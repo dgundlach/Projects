@@ -1,0 +1,17 @@
+D AUTH                                  	auth
+F CRYPT_MD.C;1                          	crypt_md5.c
+F CRYPT_MD.O;1                          	crypt_md5.o
+F IT.;1                                 	it
+F MCTIME.C;1                            	mctime.c
+F MCTIME.O;1                            	mctime.o
+F MD5.C;1                               	md5.c
+F MD5.H;1                               	md5.h
+F MD5.O;1                               	md5.o
+F TOUCH.C;1                             	touch.c
+F TOUCH.O;1                             	touch.o
+F VMAIL_CH.;1                           	vmail-checkpw
+F VMAIL_CH.C;1                          	vmail-checkpw.c
+F VMAIL_CH.O;1                          	vmail-checkpw.o
+F VMAIL_PO.;1                           	vmail-popbull
+F VMAIL_PO.C;1                          	vmail-popbull.c
+F VMAIL_PO.O;1                          	vmail-popbull.o

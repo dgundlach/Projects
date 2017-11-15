@@ -1,0 +1,361 @@
+Script started on Sun Mar 31 03:18:36 2002
+[dan@sirius delmail]$ strace ftp localhost
+execve("/usr/bin/ftp", ["ftp", "localhost"], [/* 22 vars */]) = 0
+uname({sys="Linux", node="sirius.msl.net", ...}) = 0
+brk(0)                                  = 0x80665c0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40017000
+open("/etc/ld.so.preload", O_RDONLY)    = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat64(3, 0xbfffecac)                  = -1 ENOSYS (Function not implemented)
+fstat(3, {st_mode=S_IFREG|0644, st_size=17953, ...}) = 0
+old_mmap(NULL, 17953, PROT_READ, MAP_PRIVATE, 3, 0) = 0x40018000
+close(3)                                = 0
+open("/usr/lib/libreadline.so.4.1", O_RDONLY) = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\240"..., 1024) = 1024
+fstat(3, {st_mode=S_IFREG|0755, st_size=177545, ...}) = 0
+old_mmap(NULL, 151920, PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0x4001d000
+mprotect(0x4003d000, 20848, PROT_NONE)  = 0
+old_mmap(0x4003d000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0x1f000) = 0x4003d000
+old_mmap(0x40042000, 368, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x40042000
+close(3)                                = 0
+open("/usr/lib/libncurses.so.5", O_RDONLY) = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\342\0"..., 1024) = 1024
+fstat(3, {st_mode=S_IFREG|0755, st_size=257300, ...}) = 0
+old_mmap(NULL, 270124, PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0x40043000
+mprotect(0x40079000, 48940, PROT_NONE)  = 0
+old_mmap(0x40079000, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0x35000) = 0x40079000
+old_mmap(0x40082000, 12076, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x40082000
+close(3)                                = 0
+open("/lib/libc.so.6", O_RDONLY)        = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\310"..., 1024) = 1024
+fstat(3, {st_mode=S_IFREG|0755, st_size=5808375, ...}) = 0
+old_mmap(NULL, 1301256, PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0x40085000
+mprotect(0x401ba000, 35592, PROT_NONE)  = 0
+old_mmap(0x401ba000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0x134000) = 0x401ba000
+old_mmap(0x401bf000, 15112, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x401bf000
+close(3)                                = 0
+munmap(0x40018000, 17953)               = 0
+brk(0)                                  = 0x80665c0
+brk(0x80669d8)                          = 0x80669d8
+brk(0x8067000)                          = 0x8067000
+open("/etc/nsswitch.conf", O_RDONLY)    = 3
+fstat64(3, 0xbfffe840)                  = -1 ENOSYS (Function not implemented)
+fstat(3, {st_mode=S_IFREG|0644, st_size=1781, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "#\n# /etc/nsswitch.conf\n#\n# An ex"..., 4096) = 1781
+brk(0x8068000)                          = 0x8068000
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=17953, ...}) = 0
+old_mmap(NULL, 17953, PROT_READ, MAP_PRIVATE, 3, 0) = 0x40018000
+close(3)                                = 0
+open("/lib/libnss_files.so.2", O_RDONLY) = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200 \0"..., 1024) = 1024
+fstat(3, {st_mode=S_IFREG|0755, st_size=262292, ...}) = 0
+old_mmap(NULL, 42600, PROT_READ|PROT_EXEC, MAP_PRIVATE, 3, 0) = 0x401c3000
+mprotect(0x401cd000, 1640, PROT_NONE)   = 0
+old_mmap(0x401cd000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED, 3, 0x9000) = 0x401cd000
+close(3)                                = 0
+munmap(0x40018000, 17953)               = 0
+open("/etc/services", O_RDONLY)         = 3
+fcntl64(3, F_GETFD)                     = -1 ENOSYS (Function not implemented)
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+fstat(3, {st_mode=S_IFREG|0644, st_size=11977, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "# /etc/services:\n# $Id: services"..., 4096) = 4096
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+ioctl(0, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+ioctl(0, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+readlink("/proc/self/fd/0", "/dev/pts/4", 511) = 10
+access("/var/run/utmpx", F_OK)          = -1 ENOENT (No such file or directory)
+open("/var/run/utmp", O_RDWR)           = -1 EACCES (Permission denied)
+open("/var/run/utmp", O_RDONLY)         = 3
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+_llseek(3, 0, [0], SEEK_SET)            = 0
+alarm(0)                                = 0
+rt_sigaction(SIGALRM, {0x4019f480, [], 0x4000000}, {SIG_DFL}, 8) = 0
+alarm(1)                                = 0
+fcntl(3, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+read(3, "\7\0\0\0\22N\0\0ftp19986\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\2\0\0\0\0\0\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\1\0\0\0003N\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\7\0\0\0\326L\0\0ftp19670\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\10\0\0\0\373\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\374\1\0\0tty1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\375\1\0\0tty2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\376\1\0\0tty3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\377\1\0\0tty4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\0\2\0\0tty5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\6\0\0\0\1\2\0\0tty6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\5\0\0\0\251\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\10\0\0\0H\3\0\0pts/0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\7\0\0\0\27N\0\0pts/1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\7\0\0\0ON\0\0pts/2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\7\0\0\0$O\0\0pts/3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "\10\0\0\0009-\0\0pts/4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(3, "", 384)                        = 0
+fcntl(3, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+rt_sigaction(SIGALRM, {SIG_DFL}, NULL, 8) = 0
+alarm(0)                                = 1
+close(3)                                = 0
+getuid32()                              = -1 ENOSYS (Function not implemented)
+getuid()                                = 505
+socket(PF_UNIX, SOCK_STREAM, 0)         = 3
+connect(3, {sin_family=AF_UNIX, path="                                                                                       /var/run/.nscd_socket"}, 110) = -1 ECONNREFUSED (Connection refused)
+close(3)                                = 0
+open("/etc/passwd", O_RDONLY)           = 3
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+fstat(3, {st_mode=S_IFREG|0644, st_size=2236, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 4096) = 2236
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGPIPE, {0x8053170, [PIPE], SA_RESTART|0x4000000}, {SIG_DFL}, 8) = 0
+gettimeofday({1017566322, 429119}, NULL) = 0
+getpid()                                = 20330
+open("/etc/resolv.conf", O_RDONLY)      = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=104, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "search spiff.net msl.net\nnameser"..., 4096) = 104
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+socket(PF_UNIX, SOCK_STREAM, 0)         = 3
+connect(3, {sin_family=AF_UNIX, path="                                                                                       /var/run/.nscd_socket"}, 110) = -1 ECONNREFUSED (Connection refused)
+close(3)                                = 0
+open("/etc/host.conf", O_RDONLY)        = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "order hosts,bind\n", 4096)     = 17
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+open("/etc/hosts", O_RDONLY)            = 3
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+fstat(3, {st_mode=S_IFREG|0644, st_size=42, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+read(3, "127.0.0.1\tlocalhost.localdomain\t"..., 4096) = 42
+close(3)                                = 0
+munmap(0x40018000, 4096)                = 0
+socket(PF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+connect(3, {sin_family=AF_INET, sin_port=htons(21), sin_addr=inet_addr("127.0.0.1")}}, 16) = 0
+getsockname(3, {sin_family=AF_INET, sin_port=htons(4158), sin_addr=inet_addr("127.0.0.1")}}, [16]) = 0
+setsockopt(3, SOL_IP, IP_TOS, [16], 4)  = 0
+fcntl(3, F_GETFL)                       = 0x2 (flags O_RDWR)
+fstat(3, {st_mode=S_IFSOCK|0777, st_size=0, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40018000
+_llseek(3, 0, 0xbfffe8d0, SEEK_CUR)     = -1 ESPIPE (Illegal seek)
+fcntl(3, F_GETFL)                       = 0x2 (flags O_RDWR)
+brk(0x8069000)                          = 0x8069000
+fstat(3, {st_mode=S_IFSOCK|0777, st_size=0, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x40019000
+_llseek(3, 0, 0xbfffe8d0, SEEK_CUR)     = -1 ESPIPE (Illegal seek)
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 4), ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x4001a000
+write(1, "Connected to localhost.localdoma"..., 36Connected to localhost.localdomain.
+) = 36
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+read(3, "220 sirius.msl.net FTP server (V"..., 1024) = 90
+write(1, "220 sirius.msl.net FTP server (V"..., 89220 sirius.msl.net FTP server (Version 6.5.5 VFTPD, based on Version 6.5/OpenBSD) ready.
+) = 89
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+setsockopt(3, SOL_SOCKET, SO_OOBINLINE, [1], 4) = 0
+open("/home/staff/dan/.netrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+ioctl(0, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+readlink("/proc/self/fd/0", "/dev/pts/4", 511) = 10
+access("/var/run/utmpx", F_OK)          = -1 ENOENT (No such file or directory)
+open("/var/run/utmp", O_RDWR)           = -1 EACCES (Permission denied)
+open("/var/run/utmp", O_RDONLY)         = 4
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+_llseek(4, 0, [0], SEEK_SET)            = 0
+alarm(0)                                = 0
+rt_sigaction(SIGALRM, {0x4019f480, [], 0x4000000}, {SIG_DFL}, 8) = 0
+alarm(1)                                = 0
+fcntl(4, F_SETLKW, {type=F_RDLCK, whence=SEEK_SET, start=0, len=0}) = 0
+read(4, "\7\0\0\0\22N\0\0ftp19986\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\2\0\0\0\0\0\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\1\0\0\0003N\0\0~\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\7\0\0\0\326L\0\0ftp19670\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\10\0\0\0\373\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\374\1\0\0tty1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\375\1\0\0tty2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\376\1\0\0tty3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\377\1\0\0tty4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\0\2\0\0tty5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\6\0\0\0\1\2\0\0tty6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\5\0\0\0\251\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\10\0\0\0H\3\0\0pts/0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\7\0\0\0\27N\0\0pts/1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\7\0\0\0ON\0\0pts/2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\7\0\0\0$O\0\0pts/3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "\10\0\0\0009-\0\0pts/4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 384) = 384
+read(4, "", 384)                        = 0
+fcntl(4, F_SETLKW, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+rt_sigaction(SIGALRM, {SIG_DFL}, NULL, 8) = 0
+alarm(0)                                = 1
+close(4)                                = 0
+getuid()                                = 505
+open("/etc/passwd", O_RDONLY)           = 4
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+fstat(4, {st_mode=S_IFREG|0644, st_size=2236, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x4001b000
+read(4, "root:x:0:0:root:/root:/bin/bash\n"..., 4096) = 2236
+close(4)                                = 0
+munmap(0x4001b000, 4096)                = 0
+fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 4), ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x4001b000
+write(1, "Name (localhost:dan): ", 22Name (localhost:dan): )  = 22
+read(0, 
+"\n", 1024)                     = 1
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+write(3, "USER dan\r\n", 10)            = 10
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+read(3, "331 Password required for dan.\r\n", 1024) = 32
+write(1, "331 Password required for dan.\n", 31331 Password required for dan.
+) = 31
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+open("/dev/tty", O_RDWR|O_CREAT|O_TRUNC, 0666) = 4
+ioctl(4, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+ioctl(4, SNDCTL_TMR_CONTINUE, {B9600 opost -isig icanon -echo ...}) = 0
+fstat(4, {st_mode=S_IFCHR|0666, st_rdev=makedev(5, 0), ...}) = 0
+ioctl(4, TCGETS, {B9600 opost -isig icanon -echo ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x4001c000
+write(4, "Password:", 9Password:)                = 9
+read(4, "3copwem8\n", 4096)             = 9
+write(4, "\n", 1
+)                       = 1
+ioctl(4, SNDCTL_TMR_CONTINUE, {B9600 opost isig icanon echo ...}) = 0
+close(4)                                = 0
+munmap(0x4001c000, 4096)                = 0
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+write(3, "PASS 3copwem8\r\n", 15)       = 15
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+read(3, "230 User dan logged in.\r\n", 1024) = 25
+write(1, "230 User dan logged in.\n", 24230 User dan logged in.
+) = 24
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+write(3, "SYST\r\n", 6)                 = 6
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+read(3, "215 UNIX Type: L8\r\n", 1024)  = 19
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+write(1, "Remote system type is UNIX.\n", 28Remote system type is UNIX.
+) = 28
+write(1, "Using binary mode to transfer fi"..., 37Using binary mode to transfer files.
+) = 37
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGPIPE, {0x8053170, [PIPE], SA_RESTART|0x4000000}, {0x8053170, [PIPE], SA_RESTART|0x4000000}, 8) = 0
+brk(0x806b000)                          = 0x806b000
+access("/home/staff/dan/.terminfo/l/linux", R_OK) = -1 ENOENT (No such file or directory)
+access("/usr/share/terminfo/l/linux", R_OK) = 0
+open("/usr/share/terminfo/l/linux", O_RDONLY) = 4
+read(4, "\32\1\24\0\35\0\20\0}\1\324\2", 12) = 12
+read(4, "linux|linux console\0", 20)    = 20
+read(4, "\0\1\0\0\1\1\0\0\0\0\0\0\0\1\1\0\0\0\0\0\1\0\0\0\0\0\0"..., 29) = 29
+read(4, "\0", 1)                        = 1
+read(4, "\377\377\10\0\377\377\377\377\377\377\377\377\377\377\377"..., 32) = 32
+read(4, "\377\377\0\0\2\0\4\0\25\0\32\0!\0%\0)\0\377\3774\0E\0G"..., 762) = 762
+read(4, "\7\0\r\0\33[%i%p1%d;%p2%dr\0\33[3g\0\33[H\33[J"..., 724) = 724
+read(4, "", 10)                         = 0
+close(4)                                = 0
+ioctl(1, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+ioctl(1, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+ioctl(1, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+brk(0x806c000)                          = 0x806c000
+brk(0x806d000)                          = 0x806d000
+ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(0, TIOCSWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(0, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+brk(0x806e000)                          = 0x806e000
+open("/usr/share/locale/locale.alias", O_RDONLY) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=2601, ...}) = 0
+old_mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x4001c000
+read(4, "# Locale name alias data base.\n#"..., 4096) = 2601
+brk(0x806f000)                          = 0x806f000
+read(4, "", 4096)                       = 0
+close(4)                                = 0
+munmap(0x4001c000, 4096)                = 0
+open("/usr/lib/locale/en_US/LC_CTYPE", O_RDONLY) = 4
+fstat(4, {st_mode=S_IFREG|0644, st_size=173408, ...}) = 0
+old_mmap(NULL, 173408, PROT_READ, MAP_PRIVATE, 4, 0) = 0x401ce000
+close(4)                                = 0
+stat("/etc/inputrc", {st_mode=S_IFREG|0644, st_size=467, ...}) = 0
+open("/etc/inputrc", O_RDONLY)          = 4
+read(4, "# do not bell on tab-completion\n"..., 467) = 467
+close(4)                                = 0
+brk(0x8070000)                          = 0x8070000
+brk(0x8071000)                          = 0x8071000
+brk(0x8072000)                          = 0x8072000
+rt_sigprocmask(SIG_BLOCK, [INT], [], 8) = 0
+ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(0, TIOCSWINSZ, {ws_row=25, ws_col=80, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(0, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+ioctl(0, SNDCTL_TMR_STOP, {B9600 opost isig -icanon -echo ...}) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGINT, {0x40034f74, [], 0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGTERM, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGQUIT, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGALRM, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGTSTP, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGTTOU, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGTTIN, {0x40034f74, [], 0x4000000}, {SIG_DFL}, 8) = 0
+rt_sigaction(SIGWINCH, {0x40035060, [], 0x4000000}, {SIG_DFL}, 8) = 0
+brk(0x8073000)                          = 0x8073000
+write(1, "ftp> ", 5ftp> )                    = 5
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+read(0, "b", 1)                         = 1
+write(1, "b", 1b)                        = 1
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+read(0, "y", 1)                         = 1
+write(1, "y", 1y)                        = 1
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+read(0, "e", 1)                         = 1
+write(1, "e", 1e)                        = 1
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+read(0, "\r", 1)                        = 1
+write(1, "\n", 1
+)                       = 1
+rt_sigprocmask(SIG_BLOCK, [INT], [], 8) = 0
+ioctl(0, SNDCTL_TMR_STOP, {B9600 opost isig icanon echo ...}) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGTERM, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGQUIT, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGALRM, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGTSTP, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGTTOU, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGTTIN, {SIG_DFL}, {0x40034f74, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGWINCH, {SIG_DFL}, {0x40035060, [], 0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+write(3, "QUIT\r\n", 6)                 = 6
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+read(3, "221 Goodbye.\r\n", 1024)       = 14
+write(1, "221 Goodbye.\n", 13221 Goodbye.
+)          = 13
+rt_sigaction(SIGINT, {0x804eb20, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x804eb20, [INT], SA_RESTART|0x4000000}, 8) = 0
+close(3)                                = 0
+munmap(0x40019000, 4096)                = 0
+rt_sigaction(SIGINT, {0x80510a0, [INT], SA_RESTART|0x4000000}, {0x8053150, [INT], SA_RESTART|0x4000000}, 8) = 0
+rt_sigaction(SIGINT, {0x8053150, [INT], SA_RESTART|0x4000000}, {0x80510a0, [INT], SA_RESTART|0x4000000}, 8) = 0
+munmap(0x4001a000, 4096)                = 0
+_exit(0)                                = ?
+[dan@sirius delmail]$ exit
+
+Script done on Sun Mar 31 03:19:11 2002

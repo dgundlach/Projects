@@ -1,0 +1,11 @@
+#!/bin/sh
+cat /home/dan/photowork/duplicates | while read f ; do 
+    X=$(stat -c "%N"  /drv/2-2/Photos3/"$f" | sed -r -e "s/\/drv\/2-2\/Photos3\/\.\/(.*) -> (.*)/\1:\2/" | tr -d "\`\'")
+    NN=`echo "$X" | cut -d: -f1`
+    ON=`echo "$X" | cut -d: -f2`
+    ND=/drv/2-2/PhotoDuplicates/`dirname "$NN"`
+    if [ ! -d "$ND" ] ; then
+        mkdir "$ND"
+    fi
+    mv "$ON" /drv/2-2/PhotoDuplicates/"$NN"
+done

@@ -1,0 +1,28 @@
+# Filesystem type defaults.  The "*" entry is a catchall.
+
+#             fs type        mount type           options
+
+fsopts          hfsplus         ufsd    noatime,fmask=0133,uid=$UID,gid=$GID
+fsopts          ntfs            ufsd    noatime,fmask=0133,uid=$UID,gid=$GID
+fsopts          vfat            vfat    noatime,fmask=0133,uid=$UID,gid=$GID
+fsopts          ext2            ext4    noatime,nodiratime
+fsopts          ext3            ext4    noatime,nodiratime
+fsopts          ext4            ext4    noatime,nodiratime
+fsopts          *               *       noatime,nodiratime
+
+# Directory ownership.
+
+#                    dir        owner   mode
+
+owner           /cygdrive       dan     0755
+owner			/private/dan    dan     0755
+owner           /private/sheri  sheri   0755
+
+# Mount directories.  If a pair dir is defined, the main dir is mounted ro,
+# and the pair dir is mounted rw.  An * disables pairing.
+
+#    dir        pair dir       fstype          options
+
+#/multimedia     /cygdrive       auto    ro,noatime,nodiratime
+/multimedia     /cygdrive       auto    defaults
+/drv            *               auto    defaults

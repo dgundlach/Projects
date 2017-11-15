@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		918B27B10D7CFB2100D87AC2 /* UnderstudyAppliance.m in Sources */ = {isa = PBXBuildFile; fileRef = 918B27B00D7CFB2100D87AC2 /* UnderstudyAppliance.m */; };
+		DF00C4620F22CF8F003A5122 /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF00C4610F22CF8F003A5122 /* ExceptionHandling.framework */; };
+		DF0A782F0F1D77E800DBB3A3 /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0A782E0F1D77E800DBB3A3 /* PubSub.framework */; };
+		DF0C59430EA9030E00E0D882 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0C59420EA9030E00E0D882 /* QuartzCore.framework */; };
+		DF0EDFCD0EE5E187008FA08A /* English.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DF0EDFCA0EE5E187008FA08A /* English.lproj */; };
+		DF375CC20F35300700DA7719 /* NetflixAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DF375CBB0F35300700DA7719 /* NetflixAddDialog.m */; };
+		DF375CC30F35300700DA7719 /* NetflixAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DF375CBD0F35300700DA7719 /* NetflixAsset.m */; };
+		DF375CC40F35300700DA7719 /* NetflixController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF375CBF0F35300700DA7719 /* NetflixController.m */; };
+		DF375CC50F35300700DA7719 /* NetflixFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DF375CC10F35300700DA7719 /* NetflixFeed.m */; };
+		DF375D600F36049A00DA7719 /* HuluFeedDiscoverer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF375D5F0F36049A00DA7719 /* HuluFeedDiscoverer.m */; };
+		DF5A22210F0FC18200F5F19F /* YouTubeAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A22200F0FC18200F5F19F /* YouTubeAsset.m */; };
+		DF5A22250F0FD6B400F5F19F /* YouTubeFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A22240F0FD6B400F5F19F /* YouTubeFeed.m */; };
+		DF5A223C0F100E4300F5F19F /* FeedMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A22390F100E4300F5F19F /* FeedMenuController.m */; };
+		DF5A23940F11240400F5F19F /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A23930F11240400F5F19F /* BaseController.m */; };
+		DF7D970C0F08647400C9B7FB /* HuluAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D97050F08647400C9B7FB /* HuluAddDialog.m */; };
+		DF7D970D0F08647400C9B7FB /* HuluAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D97070F08647400C9B7FB /* HuluAsset.m */; };
+		DF7D970F0F08647400C9B7FB /* HuluFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D970B0F08647400C9B7FB /* HuluFeed.m */; };
+		DF7F84F00EE3354E0049E5C3 /* BackRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF7F84EF0EE3354E0049E5C3 /* BackRow.framework */; };
+		DFA511990F1A8E5B00FC903B /* HuluController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA511980F1A8E5B00FC903B /* HuluController.m */; };
+		DFA512360F1A92F300FC903B /* YouTubeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA512350F1A92F300FC903B /* YouTubeController.m */; };
+		DFCDFB110F3E2E9300D979F0 /* AddFeedDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCDFB0A0F3E2E9300D979F0 /* AddFeedDialog.m */; };
+		DFCDFB120F3E2E9300D979F0 /* MainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCDFB0C0F3E2E9300D979F0 /* MainMenuController.m */; };
+		DFCDFB130F3E2E9300D979F0 /* ManageFeedsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCDFB0E0F3E2E9300D979F0 /* ManageFeedsDialog.m */; };
+		DFCDFB140F3E2E9300D979F0 /* RenameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCDFB100F3E2E9300D979F0 /* RenameDialog.m */; };
+		DFCDFB1B0F3E2F7800D979F0 /* ApplianceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCDFB1A0F3E2F7800D979F0 /* ApplianceIcon.png */; };
+		DFCDFC530F3E72A400D979F0 /* BaseUnderstudyAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCDFC520F3E72A400D979F0 /* BaseUnderstudyAsset.m */; };
+		DFE014950EDF681D00AFD18F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFE014940EDF681D00AFD18F /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		8D5B49B6048680CD000E48DA /* frUnderstudy.frappliance */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frUnderstudy.frappliance; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		918B27AF0D7CFB2100D87AC2 /* UnderstudyAppliance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderstudyAppliance.h; sourceTree = "<group>"; };
+		918B27B00D7CFB2100D87AC2 /* UnderstudyAppliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderstudyAppliance.m; sourceTree = "<group>"; };
+		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		DF00C4610F22CF8F003A5122 /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = System/Library/Frameworks/ExceptionHandling.framework; sourceTree = SDKROOT; };
+		DF0A782E0F1D77E800DBB3A3 /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = System/Library/Frameworks/PubSub.framework; sourceTree = SDKROOT; };
+		DF0C59420EA9030E00E0D882 /* QuartzCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		DF0C96B40EE5BA9F00E85372 /* understudy_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = understudy_Prefix.pch; sourceTree = "<group>"; };
+		DF0EDFCA0EE5E187008FA08A /* English.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = English.lproj; sourceTree = "<group>"; };
+		DF375CBA0F35300700DA7719 /* NetflixAddDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixAddDialog.h; path = Netflix/NetflixAddDialog.h; sourceTree = "<group>"; };
+		DF375CBB0F35300700DA7719 /* NetflixAddDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetflixAddDialog.m; path = Netflix/NetflixAddDialog.m; sourceTree = "<group>"; };
+		DF375CBC0F35300700DA7719 /* NetflixAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixAsset.h; path = Netflix/NetflixAsset.h; sourceTree = "<group>"; };
+		DF375CBD0F35300700DA7719 /* NetflixAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetflixAsset.m; path = Netflix/NetflixAsset.m; sourceTree = "<group>"; };
+		DF375CBE0F35300700DA7719 /* NetflixController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixController.h; path = Netflix/NetflixController.h; sourceTree = "<group>"; };
+		DF375CBF0F35300700DA7719 /* NetflixController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetflixController.m; path = Netflix/NetflixController.m; sourceTree = "<group>"; };
+		DF375CC00F35300700DA7719 /* NetflixFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixFeed.h; path = Netflix/NetflixFeed.h; sourceTree = "<group>"; };
+		DF375CC10F35300700DA7719 /* NetflixFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetflixFeed.m; path = Netflix/NetflixFeed.m; sourceTree = "<group>"; };
+		DF375D5E0F36049A00DA7719 /* HuluFeedDiscoverer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuluFeedDiscoverer.h; sourceTree = "<group>"; };
+		DF375D5F0F36049A00DA7719 /* HuluFeedDiscoverer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuluFeedDiscoverer.m; sourceTree = "<group>"; };
+		DF5A221F0F0FC18200F5F19F /* YouTubeAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeAsset.h; sourceTree = "<group>"; };
+		DF5A22200F0FC18200F5F19F /* YouTubeAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeAsset.m; sourceTree = "<group>"; };
+		DF5A22230F0FD6B400F5F19F /* YouTubeFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeFeed.h; sourceTree = "<group>"; };
+		DF5A22240F0FD6B400F5F19F /* YouTubeFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeFeed.m; sourceTree = "<group>"; };
+		DF5A22380F100E4300F5F19F /* FeedMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedMenuController.h; sourceTree = "<group>"; };
+		DF5A22390F100E4300F5F19F /* FeedMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedMenuController.m; sourceTree = "<group>"; };
+		DF5A23920F11240400F5F19F /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
+		DF5A23930F11240400F5F19F /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
+		DF5A244E0F11366F00F5F19F /* UnderstudyAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderstudyAsset.h; sourceTree = "<group>"; };
+		DF7D97040F08647400C9B7FB /* HuluAddDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuluAddDialog.h; sourceTree = "<group>"; };
+		DF7D97050F08647400C9B7FB /* HuluAddDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuluAddDialog.m; sourceTree = "<group>"; };
+		DF7D97060F08647400C9B7FB /* HuluAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuluAsset.h; sourceTree = "<group>"; };
+		DF7D97070F08647400C9B7FB /* HuluAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuluAsset.m; sourceTree = "<group>"; };
+		DF7D970A0F08647400C9B7FB /* HuluFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuluFeed.h; sourceTree = "<group>"; };
+		DF7D970B0F08647400C9B7FB /* HuluFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuluFeed.m; sourceTree = "<group>"; };
+		DF7F84EF0EE3354E0049E5C3 /* BackRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackRow.framework; path = /System/Library/PrivateFrameworks/BackRow.framework; sourceTree = "<absolute>"; };
+		DFA511970F1A8E5B00FC903B /* HuluController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuluController.h; sourceTree = "<group>"; };
+		DFA511980F1A8E5B00FC903B /* HuluController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuluController.m; sourceTree = "<group>"; };
+		DFA512340F1A92D900FC903B /* YouTubeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeController.h; sourceTree = "<group>"; };
+		DFA512350F1A92F300FC903B /* YouTubeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeController.m; sourceTree = "<group>"; };
+		DFCDFB090F3E2E9300D979F0 /* AddFeedDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedDialog.h; sourceTree = "<group>"; };
+		DFCDFB0A0F3E2E9300D979F0 /* AddFeedDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedDialog.m; sourceTree = "<group>"; };
+		DFCDFB0B0F3E2E9300D979F0 /* MainMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuController.h; sourceTree = "<group>"; };
+		DFCDFB0C0F3E2E9300D979F0 /* MainMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuController.m; sourceTree = "<group>"; };
+		DFCDFB0D0F3E2E9300D979F0 /* ManageFeedsDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageFeedsDialog.h; sourceTree = "<group>"; };
+		DFCDFB0E0F3E2E9300D979F0 /* ManageFeedsDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageFeedsDialog.m; sourceTree = "<group>"; };
+		DFCDFB0F0F3E2E9300D979F0 /* RenameDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameDialog.h; sourceTree = "<group>"; };
+		DFCDFB100F3E2E9300D979F0 /* RenameDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameDialog.m; sourceTree = "<group>"; };
+		DFCDFB1A0F3E2F7800D979F0 /* ApplianceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ApplianceIcon.png; path = Resources/ApplianceIcon.png; sourceTree = "<group>"; };
+		DFCDFC510F3E72A400D979F0 /* BaseUnderstudyAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUnderstudyAsset.h; sourceTree = "<group>"; };
+		DFCDFC520F3E72A400D979F0 /* BaseUnderstudyAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseUnderstudyAsset.m; sourceTree = "<group>"; };
+		DFE014940EDF681D00AFD18F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				DF0C59430EA9030E00E0D882 /* QuartzCore.framework in Frameworks */,
+				DFE014950EDF681D00AFD18F /* WebKit.framework in Frameworks */,
+				DF7F84F00EE3354E0049E5C3 /* BackRow.framework in Frameworks */,
+				DF0A782F0F1D77E800DBB3A3 /* PubSub.framework in Frameworks */,
+				DF00C4620F22CF8F003A5122 /* ExceptionHandling.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* HelloWorld */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32C88E010371C26100C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = HelloWorld;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				DF00C4610F22CF8F003A5122 /* ExceptionHandling.framework */,
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DF0EDFCA0EE5E187008FA08A /* English.lproj */,
+				DFCDFB1A0F3E2F7800D979F0 /* ApplianceIcon.png */,
+				8D5B49B7048680CD000E48DA /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DFCDFB080F3E2E9300D979F0 /* Menuing */,
+				DF5A22370F100E4300F5F19F /* Base */,
+				DF7D97030F08647400C9B7FB /* Hulu */,
+				DF375CC60F35302600DA7719 /* Netflix */,
+				DF5A221E0F0FC14B00F5F19F /* YouTube */,
+				918B27AF0D7CFB2100D87AC2 /* UnderstudyAppliance.h */,
+				918B27B00D7CFB2100D87AC2 /* UnderstudyAppliance.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF0A782E0F1D77E800DBB3A3 /* PubSub.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				D2F7E65807B2D6F200F64583 /* CoreData.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+				DFE014940EDF681D00AFD18F /* WebKit.framework */,
+				DF0C59420EA9030E00E0D882 /* QuartzCore.framework */,
+				DF7F84EF0EE3354E0049E5C3 /* BackRow.framework */,
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* frUnderstudy.frappliance */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32C88E010371C26100C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DF0C96B40EE5BA9F00E85372 /* understudy_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		DF375CC60F35302600DA7719 /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				DF375CBA0F35300700DA7719 /* NetflixAddDialog.h */,
+				DF375CBB0F35300700DA7719 /* NetflixAddDialog.m */,
+				DF375CBC0F35300700DA7719 /* NetflixAsset.h */,
+				DF375CBD0F35300700DA7719 /* NetflixAsset.m */,
+				DF375CBE0F35300700DA7719 /* NetflixController.h */,
+				DF375CBF0F35300700DA7719 /* NetflixController.m */,
+				DF375CC00F35300700DA7719 /* NetflixFeed.h */,
+				DF375CC10F35300700DA7719 /* NetflixFeed.m */,
+			);
+			name = Netflix;
+			sourceTree = "<group>";
+		};
+		DF5A221E0F0FC14B00F5F19F /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				DF5A221F0F0FC18200F5F19F /* YouTubeAsset.h */,
+				DF5A22200F0FC18200F5F19F /* YouTubeAsset.m */,
+				DFA512340F1A92D900FC903B /* YouTubeController.h */,
+				DFA512350F1A92F300FC903B /* YouTubeController.m */,
+				DF5A22230F0FD6B400F5F19F /* YouTubeFeed.h */,
+				DF5A22240F0FD6B400F5F19F /* YouTubeFeed.m */,
+			);
+			path = YouTube;
+			sourceTree = "<group>";
+		};
+		DF5A22370F100E4300F5F19F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DF5A244E0F11366F00F5F19F /* UnderstudyAsset.h */,
+				DFCDFC510F3E72A400D979F0 /* BaseUnderstudyAsset.h */,
+				DFCDFC520F3E72A400D979F0 /* BaseUnderstudyAsset.m */,
+				DF5A23920F11240400F5F19F /* BaseController.h */,
+				DF5A23930F11240400F5F19F /* BaseController.m */,
+				DF5A22380F100E4300F5F19F /* FeedMenuController.h */,
+				DF5A22390F100E4300F5F19F /* FeedMenuController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DF7D97030F08647400C9B7FB /* Hulu */ = {
+			isa = PBXGroup;
+			children = (
+				DF7D97040F08647400C9B7FB /* HuluAddDialog.h */,
+				DF7D97050F08647400C9B7FB /* HuluAddDialog.m */,
+				DF7D97060F08647400C9B7FB /* HuluAsset.h */,
+				DF7D97070F08647400C9B7FB /* HuluAsset.m */,
+				DFA511970F1A8E5B00FC903B /* HuluController.h */,
+				DFA511980F1A8E5B00FC903B /* HuluController.m */,
+				DF7D970A0F08647400C9B7FB /* HuluFeed.h */,
+				DF7D970B0F08647400C9B7FB /* HuluFeed.m */,
+				DF375D5E0F36049A00DA7719 /* HuluFeedDiscoverer.h */,
+				DF375D5F0F36049A00DA7719 /* HuluFeedDiscoverer.m */,
+			);
+			path = Hulu;
+			sourceTree = "<group>";
+		};
+		DFCDFB080F3E2E9300D979F0 /* Menuing */ = {
+			isa = PBXGroup;
+			children = (
+				DFCDFB090F3E2E9300D979F0 /* AddFeedDialog.h */,
+				DFCDFB0A0F3E2E9300D979F0 /* AddFeedDialog.m */,
+				DFCDFB0B0F3E2E9300D979F0 /* MainMenuController.h */,
+				DFCDFB0C0F3E2E9300D979F0 /* MainMenuController.m */,
+				DFCDFB0D0F3E2E9300D979F0 /* ManageFeedsDialog.h */,
+				DFCDFB0E0F3E2E9300D979F0 /* ManageFeedsDialog.m */,
+				DFCDFB0F0F3E2E9300D979F0 /* RenameDialog.h */,
+				DFCDFB100F3E2E9300D979F0 /* RenameDialog.m */,
+			);
+			path = Menuing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D5B49AC048680CD000E48DA /* Understudy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Understudy" */;
+			buildPhases = (
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Understudy;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = HelloWorld;
+			productReference = 8D5B49B6048680CD000E48DA /* frUnderstudy.frappliance */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "understudy" */;
+			compatibilityVersion = "Xcode 3.0";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* HelloWorld */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* Understudy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF0EDFCD0EE5E187008FA08A /* English.lproj in Resources */,
+				DFCDFB1B0F3E2F7800D979F0 /* ApplianceIcon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				918B27B10D7CFB2100D87AC2 /* UnderstudyAppliance.m in Sources */,
+				DF7D970C0F08647400C9B7FB /* HuluAddDialog.m in Sources */,
+				DF7D970D0F08647400C9B7FB /* HuluAsset.m in Sources */,
+				DF7D970F0F08647400C9B7FB /* HuluFeed.m in Sources */,
+				DF5A22210F0FC18200F5F19F /* YouTubeAsset.m in Sources */,
+				DF5A22250F0FD6B400F5F19F /* YouTubeFeed.m in Sources */,
+				DF5A223C0F100E4300F5F19F /* FeedMenuController.m in Sources */,
+				DF5A23940F11240400F5F19F /* BaseController.m in Sources */,
+				DFA511990F1A8E5B00FC903B /* HuluController.m in Sources */,
+				DFA512360F1A92F300FC903B /* YouTubeController.m in Sources */,
+				DF375CC20F35300700DA7719 /* NetflixAddDialog.m in Sources */,
+				DF375CC30F35300700DA7719 /* NetflixAsset.m in Sources */,
+				DF375CC40F35300700DA7719 /* NetflixController.m in Sources */,
+				DF375CC50F35300700DA7719 /* NetflixFeed.m in Sources */,
+				DF375D600F36049A00DA7719 /* HuluFeedDiscoverer.m in Sources */,
+				DFCDFB110F3E2E9300D979F0 /* AddFeedDialog.m in Sources */,
+				DFCDFB120F3E2E9300D979F0 /* MainMenuController.m in Sources */,
+				DFCDFB130F3E2E9300D979F0 /* ManageFeedsDialog.m in Sources */,
+				DFCDFB140F3E2E9300D979F0 /* RenameDialog.m in Sources */,
+				DFCDFC530F3E72A400D979F0 /* BaseUnderstudyAsset.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/\"",
+					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PFE_FILE_C_DIALECTS = "c objective-c";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = understudy_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					Hulu,
+					Netflix,
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "/System/Library/CoreServices/Front Row.app/Contents/PlugIns/";
+				PRODUCT_NAME = frUnderstudy;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = frappliance;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/\"",
+					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
+				GCC_MODEL_TUNING = "";
+				GCC_PFE_FILE_C_DIALECTS = "c objective-c";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = understudy_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "/System/Library/CoreServices/Front Row.app/Contents/PlugIns/";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_NAME = frUnderstudy;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				VALID_ARCHS = "ppc970 ppc7400 ppc64 ppc i386 x86_64";
+				WRAPPER_EXTENSION = frappliance;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "/System/Library/PrivateFrameworks//**";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					Hulu,
+					Netflix,
+				);
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = "/System/Library/PrivateFrameworks//**";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					Hulu,
+					Netflix,
+				);
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Understudy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "understudy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

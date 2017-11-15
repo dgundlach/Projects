@@ -1,0 +1,36 @@
+exiftool 2005-10-30/CRW_0522.CRW 
+exiftool -2006-11-24/img_0989.cr2 
+man exiftool
+exiftool 2006-11-27/
+exiftool -d '%Y%m%d%H%M.%S' -p '$directory/$filename $datetimeoriginal' 2006-11-24
+exiftool -d '%Y%m%d%H%M.%S' -p '$directory/$filename $datetimeoriginal' *
+exiftool -d '%Y%m%d%H%M.%S' -p '$directory/$filename $datetimeoriginal' *
+exiftool -d '%Y%m%d%H%M.%S' -p '$directory/$filename $datetimeoriginal' * > ~/photolist
+exiftool -d '%Y%m%d%H%M.%S' -p '$directory/$filename $datetimeoriginal' * > ~/photolist 2>photolist.errors
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename $directory/$filename $datetimeoriginal' * > ~/photolist 2>~/photolist.errors
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/photolist 2>~/photolist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename+$directory/$filename+$datetimeoriginal' * > ~/photolist 2>~/photolist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/photolist 2>~/photolist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/nmlist 2>~/nmlist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/2001list 2>~/2011list.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/dcimlist 2>~/dcimlist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/coloradolist 2>~/coloradolist.errors &
+exiftool -d '%Y%m%d%H%M.%S' -p '$filename:$directory/$filename:$datetimeoriginal' * > ~/20080909list 2>~/20080909list.errors &
+man exiftool
+exiftool -p ’$filename has date $dateTimeOriginal’ -q -f 2006-11-27
+exiftool -p ’$filename has date $dateTimeOriginal’ -q -f 2006-11-27/*
+exiftool img_1103.cr2 
+exiftool -f '$filename' img_1103.cr2 
+man exiftool
+exiftool -createdate img_1103.cr2 
+exiftool -filename -createdate img_1103.cr2 
+exiftool -filename -createdate img_1103.cr2 
+exiftool -filename -createdate newbike.jpg 
+exiftool -filename -createdate img_1104.cr2 
+exiftool -filename -createdate img_1105.cr2 
+man exiftool
+man exiftool
+exiftool -p '$createdate' img_1105.cr2 
+man exiftool
+man exiftool
+exiftool -d '%Y%m%d%H%M.%S' -p '$createdate' img_1105.cr2 

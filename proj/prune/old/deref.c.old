@@ -1,0 +1,91 @@
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+#include "xalloc.h"
+
+//
+//  Dereference a symbolic link.  If the path is not a symbolic link,
+//  return a copy of the path.  Keep defererencing until we find
+//  something that's not a symbolic link.
+//
+//  Subsequent calls will clobber the value returned, so make a copy of
+//  the dereferenced path if it's needed after them.
+//
+
+char *dereference(const char *path) {
+
+	static char *d = NULL;
+	static char *wd = NULL;
+	static char *oldwd = NULL;
+	static int alloc = 0;
+	char *t;
+	struct stat st;
+
+//
+//  Allocate the initial buffers or reallocate if the size is too small.
+//
+
+	if (!wd || (alloc <= strlen(path) + 1)) {
+		alloc = 256 * ((strlen(path) + 512) / 256);
+		wd = d = xrealloc(d, alloc * 2);
+		oldwd = d + alloc;
+	}
+	strcpy(wd, path);
+	if (lstat(wd, &st)) {
+		return NULL;
+	}
+
+//
+//  If the entry is a link, dereference it, and keep dereferencing while
+//  the entries are links.
+//
+
+	while (S_ISLNK(st.st_mode)) {
+
+//
+//  Make sure that there is enough room in the buffers.
+//
+
+		if (alloc <= (st.st_size + 1)) {
+			alloc = 256 * ((st.st_size + 512) / 256);
+			t = xmalloc(alloc * 2);
+			strcpy(t, wd);
+			free(d);
+			wd = d = t;
+			oldwd = wd + alloc;
+			*oldwd = '\0';
+		}
+
+//
+//  Swap the buffers so that the current becomes the old, and likewise.
+//
+
+		t = oldwd;
+		oldwd = wd;
+		wd = t;
+
+//
+//  If we can't read the link, return NULL.
+//
+
+		if (readlink(oldwd, wd, alloc) == -1) {
+			return NULL;
+		}
+
+//
+//  Readlink doesn't terminate the string.  What gives?
+//
+
+		*(wd + st.st_size) = '\0';
+
+//
+//  If the link is broken, return NULL.
+//
+
+		if (lstat(wd, &st)) {
+			return NULL;
+		}
+	}
+	return wd;
+}

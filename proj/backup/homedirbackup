@@ -1,0 +1,86 @@
+#!/bin/sh
+
+# This routine moves the back up to the proper directory and sets
+# the current link to it.  It does this for both local and remote
+# back ups.
+
+set_current() {
+	if [ ! -z "${REMOTE}" ] ; then
+		ssh ${SERVER_USER}@${SERVER} \
+			"mv ${ARCHIVE_DIR}/incomplete-${DATE} ${ARCHIVE_DIR}/${DATE} \
+        		&& rm -f ${ARCHIVE_DIR}/current \
+        		&& ln -s ${DATE} ${ARCHIVE_DIR}/current"
+	else
+		mv ${ARCHIVE_DIR}/incomplete-${DATE} ${ARCHIVE_DIR}/${DATE} \
+        	&& rm -f ${ARCHIVE_DIR}/current \
+        	&& ln -s ${DATE} ${ARCHIVE_DIR}/current
+	fi
+}
+
+# Set the PATH.  This has to be done if the program is called
+# by crond under Cygwin.
+
+export PATH=/usr/local/bin:/usr/bin:/bin:$PATH
+unset ARCHIVE_DIR SERVER SERVER_USER REMOTE
+DATE=$(date "+%Y-%m-%d_%H-%M-%S")
+
+# See if we're already running.
+
+CONF="$HOME"/.backup
+if [ -e "${CONF}"/.lock ] ; then
+	echo "Lock file already exists: ${CONF}/.lock"
+	exit
+fi
+touch "${CONF}"/.lock
+
+# Read the configuration variables, and set up the defaults if they're
+# empty.
+
+. ${CONF}/backup.conf
+if [ -z "$ARCHIVE_DIR" ] ; then
+	ARCHIVE_DIR=Backups
+fi
+if [ ! -z "$SERVER" ] ; then
+	if [ -z "$SERVER_USER" ] ; then
+		SERVER_USER=$(id -un)
+	fi
+	REMOTE="${SERVER_USER}@${SERVER}:"
+	ARCHIVE_DIR=${ARCHIVE_DIR}/$(hostname | cut -d. -f1)
+fi
+
+# Are we running under Cygwin?  We'll have to back things up differently
+# if we are.
+
+if [ "${OS}" = "Windows_NT" ] ; then
+	WHOME=/cygdrive/$(echo $USERPROFILE \
+		| sed -r -e 's+^[A-Z]:+\L&+' \
+				 -e 's+^([a-z]):(.*)+\1\2+' \
+				 -e 's+\\+/+g')/
+	RSYNC_OPTS="--chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -rltgoDEzP"
+else
+	WHOME=$HOME/
+	RSYNC_OPTS="-azP"
+fi
+
+# Create the back up path if it doesn't already exist.
+
+if [ ! -z "${REMOTE}" ] ; then
+	ssh ${SERVER_USER}@${SERVER} \
+		"if [ ! -d ${ARCHIVE_DIR} ] ; then mkdir -p ${ARCHIVE_DIR} ; fi"
+else
+	if [ ! -d ${ARCHIVE_DIR} ] ; then
+		mkdir -p ${ARCHIVE_DIR}
+	fi
+fi
+
+# Do the back up, then remove the lock file.
+
+rsync ${RSYNC_OPTS} \
+	--delete \
+	--delete-excluded \
+	--files-from="${CONF}"/include \
+	--exclude-from="${CONF}"/exclude \
+	--link-dest=../current \
+	${WHOME} ${REMOTE}${ARCHIVE_DIR}/incomplete-${DATE} \
+	&& set_current
+rm "${CONF}"/.lock

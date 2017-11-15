@@ -1,0 +1,18 @@
+#!/bin/sh
+FPATH="/home/multimedia/Movies"
+if [ ! -z "$1" ] ; then
+	FPATH="$1"
+fi
+find "$FPATH" -name \*.nfo | while read NAME ; do
+	TITLE=$(grep '<title>' "$NAME" | sed -r -e 's+<title>(.*)</title>+\1+')
+	ORIG=$(grep '<originaltitle>' "$NAME" | sed -r -e 's+<originaltitle>(.*)</originaltitle>+\1+')
+	if [ -z "$ORIG" ] ; then
+		ORIG="$TITLE"
+	fi
+	YEAR=$(grep '<year>' "$NAME" | sed -r -e 's+<year>(.*)</year>+\1+')
+	if [ -z "$YEAR" ] ; then
+		YEAR=$(echo "$NAME" | cut -d\( -f2 | cut -d\) -f1)
+	fi
+	NAME=$(basename "$NAME" .nfo | sed -r -e 's/\&/\&amp;/g' -e "s/'/\&apos;/g").iso
+	echo -e "${NAME}\t${TITLE}\t${ORIG}\t${YEAR}"
+done | sort

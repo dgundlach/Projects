@@ -1,0 +1,17 @@
+#!/bin/sh
+# invoke this program instead of qmail-pop3d.
+# if the user has a Maildir called Maildirdummy, then this script will
+#   deliver their mail to the smtp server on the same machine that
+#   is running the pop client.  While it's running, the pop client will
+#   get handed an empty Maildir to play with.
+# care should be taken not to check the pop mail so often that you
+#   get two maildir2smtp invocations running at the same time.
+# Inspired by a similar program written by Anand <arb-qmail@iconnect.co.ke>.
+# Brad Clements suggested that qmail-pop3d should be executed 'else'.
+
+if [ -d Maildirdummy ]; then
+    /var/qmail/bin/maildir2smtp $1 $USER- $TCPREMOTEIP `hostname` 2>&1 | logger -p daemon.notice &;
+    /var/qmail/bin/qmail-pop3d Maildirdummy
+else
+    exec /var/qmail/bin/qmail-pop3d $1
+fi

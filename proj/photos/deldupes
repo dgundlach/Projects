@@ -1,0 +1,9 @@
+#!/bin/sh
+for n1 in Dup* ; do
+    n2=`echo "$n1" | cut -b7-`
+    s1=`md5sum "$n1" | cut -b-32`
+    s2=`md5sum "$n2" | cut -b-32`
+    if [ "$s1" = "$s2" ] ; then
+        rm -v $n1
+    fi
+done

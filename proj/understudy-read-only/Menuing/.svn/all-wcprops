@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/56/trunk/Menuing
+END
+AddFeedDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/55/trunk/Menuing/AddFeedDialog.h
+END
+RenameDialog.m
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/55/trunk/Menuing/RenameDialog.m
+END
+MainMenuController.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/55/trunk/Menuing/MainMenuController.h
+END
+ManageFeedsDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/55/trunk/Menuing/ManageFeedsDialog.h
+END
+AddFeedDialog.m
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/55/trunk/Menuing/AddFeedDialog.m
+END
+MainMenuController.m
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/56/trunk/Menuing/MainMenuController.m
+END
+ManageFeedsDialog.m
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/56/trunk/Menuing/ManageFeedsDialog.m
+END
+RenameDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/55/trunk/Menuing/RenameDialog.h
+END

@@ -1,0 +1,123 @@
+From pfiland@mindspring.com Fri Feb 04 04:03:06 2005
+Message-ID: <42034858.1D7C@mindspring.com>
+From: pete <pfiland@mindspring.com>
+Reply-To: pfiland@mindspring.com
+Organization: PF
+X-Mailer: Mozilla 3.04Gold (WinNT; I)
+MIME-Version: 1.0
+Newsgroups: comp.lang.c
+Subject: Re: array riddle in c
+References: <1106185409.741576.83540@f14g2000cwb.googlegroups.com> <1106189757.278253.54600@f14g2000cwb.googlegroups.com> <87y8eou7lm.fsf@benpfaff.org> <41F006EF.221B@mindspring.com> <pan.2005.01.27.18.47.16.219000@netactive.co.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Lines: 101
+Date: Fri, 04 Feb 2005 10:03:06 GMT
+NNTP-Posting-Host: 63.186.104.132
+X-Complaints-To: abuse@earthlink.net
+X-Trace: newsread3.news.atl.earthlink.net 1107511386 63.186.104.132 (Fri, 04 Feb 2005 02:03:06 PST)
+NNTP-Posting-Date: Fri, 04 Feb 2005 02:03:06 PST
+Path: newsfeed.slurp.net!news.unoc.net!news.moat.net!border2.nntp.dca.giganews.com!border1.nntp.dca.giganews.com!nntp.giganews.com!newshub.sdsu.edu!elnk-nf2-pas!newsfeed.earthlink.net!stamper.news.pas.earthlink.net!stamper.news.atl.earthlink.net!newsread3.news.atl.earthlink.net.POSTED!18967b50!not-for-mail
+Xref: newsfeed.slurp.net comp.lang.c:102272
+
+Lawrence Kirby wrote:
+> 
+> On Thu, 20 Jan 2005 19:30:52 +0000, pete wrote:
+> 
+> > Ben Pfaff wrote:
+> >>
+> >> "puzzlecracker" <ironsel2000@gmail.com> writes:
+> >>
+> >> > Given an array of size n,
+> >> > and its populated with consecutive integers
+> >> > from 1
+> >> > to n, i.e. [1, 2...n-1, n] in random order.
+> >> > Two integers are removed,
+> >> > meaning zero is placed in their places.
+> >> > Give O (n) efficient algorithm
+> >> > to find them WITHOUT using extra space?
+> >>
+> >> I expect that any solution would require at least O(1) extra
+> >> space.
+> 
+> ...
+> 
+> > void find_numbers(long unsigned *array, long unsigned n,
+> >                   long unsigned *number, long unsigned *scratch)
+> > {
+> >     long unsigned count, index;
+> >
+> >     for (count = 0; count != n; ++count) {
+> >         scratch[count] = 0;
+> >     }
+> >     for (count = 0; count != n; ++count) {
+> >         if (array[count] != 0) {
+> >             scratch[array[count] - 1] = array[count];
+> >         }
+> >     }
+> >     for (index = count = 0; count != n; ++count) {
+> >         if (scratch[count] == 0) {
+> >             number[index++] = count + 1;
+> >             if (index == 2) {
+> >                 break;
+> >             }
+> >         }
+> >     }
+> > }
+> 
+> You can do this inplace in array,
+> i.e. without needing the extra scratch array:
+> 
+> void find_numbers_inplace(long unsigned *array, long unsigned n,
+>                           long unsigned *number)
+> {
+>     long unsigned count, index;
+> 
+>     for (count = 0; count != n; count++) {
+>         long unsigned tmp;
+> 
+>         while ((tmp = array[count]) != 0 && count != tmp-1) {
+>             array[count] = array[tmp-1];
+>             array[tmp-1] = tmp;
+>         }
+>     }
+> 
+>     for (index = count = 0; count != n; ++count) {
+>         if (array[count] == 0) {
+>             number[index++] = count + 1;
+>             if (index == 2) {
+>                 break;
+>             }
+>         }
+>     }
+> }
+> 
+> And, yes, this is an O(n) algorithm despite appearances
+> (i.e. the nested loops).
+
+Nested loops ?!
+One of the smart guys on comp.programming described
+something which I consider to be the "right" solution.
+
+void find_numbers(long unsigned *array, long unsigned n,
+                  long unsigned *number)
+{
+    const long unsigned count = n;
+    long unsigned array_sum, sum, half_sum;
+  
+    for (array_sum = n = 0; n != count; ++n) {
+        array_sum += array[n];
+    }
+    sum = (count + 1) * count / 2 - array_sum;
+    half_sum = sum / 2;
+    for (array_sum = n = 0; n != count; ++n) {
+        if (half_sum >= array[n]) {
+            array_sum += array[n];
+        }
+    }
+    number[0] = (half_sum + 1) * half_sum / 2 - array_sum;
+    number[1] = sum - number[0];
+}
+
+-- 
+pete
+

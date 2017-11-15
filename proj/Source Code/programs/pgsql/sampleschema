@@ -1,0 +1,49 @@
+\connect - dan
+CREATE SEQUENCE "users_uid_seq" start 1000 increment 1 maxvalue 2147483647 minvalue 1000  cache 1 ;
+CREATE TABLE "users" (
+	"username" text NOT NULL,
+	"passwd" character DEFAULT 'x',
+	"uid" int4 DEFAULT nextval('users_uid_seq'::text),
+	"gid" int4,
+	"gecos" text,
+	"homedir" text,
+	"shell" text,
+	"masteruid" int4,
+	PRIMARY KEY ("username")
+);
+REVOKE ALL on "users" from PUBLIC;
+GRANT SELECT on "users" to "rewtlookup";
+GRANT SELECT on "users" to "lookup";
+CREATE TABLE "shadow" (
+	"username" text NOT NULL,
+	"passwd" text,
+	"lastchange" int4,
+	"min" int4 DEFAULT -1,
+	"max" int4 DEFAULT -1,
+	"warn" int4 DEFAULT -1,
+	"inact" int4 DEFAULT -1,
+	"expire" int4 DEFAULT -1,
+	"flag" int4 DEFAULT -1,
+	PRIMARY KEY ("username")
+);
+REVOKE ALL on "shadow" from PUBLIC;
+GRANT SELECT on "shadow" to "rewtlookup";
+CREATE SEQUENCE "groups_gid_seq" start 1000 increment 1 maxvalue 2147483647 minvalue 1000  cache 1 ;
+CREATE TABLE "groups" (
+	"groupname" text NOT NULL,
+	"grppasswd" text,
+	"gid" int4 DEFAULT nextval('groups_gid_seq'::text),
+	"members" text,
+	PRIMARY KEY ("groupname")
+);
+REVOKE ALL on "groups" from PUBLIC;
+GRANT SELECT on "groups" to "rewtlookup";
+GRANT SELECT on "groups" to "lookup";
+COPY "users" FROM stdin;
+\.
+COPY "shadow" FROM stdin;
+\.
+COPY "groups" FROM stdin;
+\.
+CREATE UNIQUE INDEX "users_uid_key" on "users" using btree ( "uid" "int4_ops" );
+CREATE UNIQUE INDEX "groups_gid_key" on "groups" using btree ( "gid" "int4_ops" );

@@ -1,0 +1,233 @@
+Script started on Mon Mar 11 13:06:22 2002
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ps ax[1Psu -telnet localhost pop-3
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
++OK <19545.1015873586@msl.net>
+user dan@sirius.msl.net
++OK 
+pass 3copwem8
++OK 
+list
++OK 
+1 204
+2 204
+3 205
+4 205
+5 205
+6 205
+7 205
+8 205
+9 767
+10 767
+11 768
+12 768
+13 768
+14 768
+15 768
+.
+retr 1
++OK 
+Received: (qmail 1528 invoked by uid 505); 9 Mar 2002 04:23:21 -0000
+Date: 9 Mar 2002 04:23:21 -0000
+Message-ID: <20020309042321.1527.qmail@sirius.msl.net>
+From: dan@sirius.msl.net
+To: dan@sirius.msl.net
+
+.
+retr 2
++OK 
+Received: (qmail 1540 invoked by uid 505); 9 Mar 2002 04:23:57 -0000
+Date: 9 Mar 2002 04:23:57 -0000
+Message-ID: <20020309042357.1539.qmail@sirius.msl.net>
+From: dan@sirius.msl.net
+To: dan@sirius.msl.net
+
+.
+dele 15
++OK 
+dele 14
++OK 
+dele 13
++OK 
+dele 12
++OK 
+dele 11
++OK 
+dele 19 0
++OK 
+dele 9
++OK 
+dele 8
++OK 
+dele 7
++OK 
+dele 6
++OK 
+quit
++OK 
+Connection closed by foreign host.
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ telnet localhost pop-3
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
++OK <19558.1015873733@msl.net>
+user dan
++OK 
+pass 3copwem8
++OK 
+list
++OK 
+.
+quit
++OK 
+Connection closed by foreign host.
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ telnet localhost pop-3
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
++OK <19561.1015873750@msl.net>
+user dan@sirius.n msl.net
++OK 
+pass 3copwem8
++OK 
+list
++OK 
+1 204
+2 204
+3 205
+4 205
+5 205
+.
+quit
++OK 
+Connection closed by foreign host.
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls
+[00m[00mcrypt_md5.c[00m  [00mmakelinks.c[00m  [00mmctime.o[00m  [00mmd5.o[00m    [01;32mvcheckpw[00m
+[00mcrypt_md5.o[00m  [00mmakelinks.o[00m  [00mmd5.c[00m     [00mtouch.c[00m  [00mvcheckpw.c[00m
+[00mit[00m           [00mmctime.c[00m     [00mmd5.h[00m     [00mtouch.o[00m  [00mvcheckpw.o[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls
+[00m[00mcrypt_md5.c[00m  [00mmctime.c[00m  [00mmd5.h[00m    [00mtouch.o[00m          [00mvmail-popbull.c[00m
+[00mcrypt_md5.o[00m  [00mmctime.o[00m  [00mmd5.o[00m    [00mvmail-checkpw.c[00m  [00mvmail-popbull.o[00m
+[00mit[00m           [00mmd5.c[00m     [00mtouch.c[00m  [00mvmail-checkpw.o[00m  [01;32mvmail-vcheckpw[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ pico vmail-checkpw.c
+[?1048h[?1047h[1;81r[1;1H[J[7m   UW PICO(tm) 4.2                New Buffer                                    [27m[80;1H[K[81;1H[K[80;1H[7m^[27m[7mG[27m Get Help  [7m^[27m[7mO[27m WriteOut  [7m^[27m[7mR[27m Read File [7m^[27m[7mY[27m Prev Pg   [7m^[27m[7mK[27m Cut Text  [7m^[27m[7mC[27m Cur Pos   [K[81;1H[7m^[27m[7mX[27m Exit      [7m^[27m[7mJ[27m Justify   [7m^[27m[7mW[27m Where is  [7m^[27m[7mV[27m Next Pg   [7m^[27m[7mU[27m UnCut Text[7m^[27m[7mT[27m To Spell  [K[3;1H[79;1H[K[79;33H[7m[ Reading file ][27m[79;1H[K[79;32H[7m[ Read 164 lines ][27m[1;32H[7mFile: vmail-checkpw.c[27m[3;1H#include <grp.h>[4;1H#include <pwd.h>[5;1H#include <errno.h>[6;1H#include <unistd.h>[7;1H#include <stdio.h>[8;1H#include <sys/types.h>[9;1H#include <stdlib.h>[10;1H#include <sys/stat.h>[11;1H#include <pwd.h>[12;1H#include <shadow.h>[13;1H#include <string.h>[14;1Hextern int errno;[15;1Hextern char *crypt();[16;1Hextern char *malloc();[17;1Hextern char **environ;[18;1Hchar *md5_crypt(char *, char *);[21;1Hchar up[513];[22;1Hint uplen;[24;1H#define DEFAULTDOMAIN   "/var/qmail/control/defaultdomain"[25;1H#define VIRTUALHOSTS    "/var/qmail/control/virtualdomains"[27;1Hint main(int argc,char **argv)[28;1H{[29;9Hstruct passwd *pw;[30;9Hstruct spwd *sp;[31;9Hchar *login;[32;9Hchar *password;[33;9Hchar *stored;[34;9Hchar *encrypted;[35;9Hchar *c;[36;9Hchar *domain = NULL;[37;9Hchar buffer[128];[38;9Hchar *virtual;[39;9Hchar *maintainer;[40;9Hchar *maildir;[41;9Hint r;[42;9Hint i;[43;9HFILE *p;[44;9Hstruct stat st;[45;9Huid_t uid = 0;[46;9Hgid_t gid = 0;[48;9Huplen = 0;[49;9Hfor (;;) {[50;17Hr = read(3,up + uplen,sizeof(up) - uplen);[51;17Hwhile ((r == -1) && (errno == EINTR));[52;17Hif (r == -1) _exit(111);[53;17Hif (r == 0) break;[54;17Huplen += r;[55;17Hif (uplen >= sizeof(up)) _exit(1);[56;9H}[58;9Hclose(3);[60;9Hi = 0;[61;9Hlogin = up + i;[62;9Hwhile (up[i++]) if (i == uplen) _exit(2);[63;9Hpassword = up + i;[64;9Hif (i == uplen) _exit(2);[65;9Hwhile (up[i++]) if (i == uplen) _exit(2);[67;9Hc = login;[68;9Hwhile (*c) {[69;17Hif ((*c == ':') || (*c == '@')) {[70;25H*c++ = '\0';[71;25Hdomain = c;[72;25Hbreak;[73;17H}[74;17Hc++;[75;9H}[76;9Hif (!domain) {[77;17Hif (!stat(DEFAULTDOMAIN,&st)) {[78;25Hdomain = malloc(st.st_size + 1);[3;1H[4;1H[5;1H[6;1H[7;1H[8;1H[9;1H[10;1H[11;1H[12;1H[13;1H[14;1H[15;1H[16;1H[17;1H[18;1H[19;1H[20;1H[21;1H[22;1H[23;1H[24;1H[25;1H[26;1H[27;1H[28;1H[79;1H[K[29;1H[30;1H[31;1H[32;1H[33;1H[34;1H[35;1H[36;1H[37;1H[38;1H[39;1H[40;1H[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;1H        int r;  [4;1H        int i;  [5;1H        FILE *p;  [6;1H        struct stat st;[7;1H        uid_t uid = 0;[8;1H        gid_t gid = 0;[9;1H[K[10;1H        uplen = 0;   [11;1H        for (;;) {[12;1H                r = read(3,up + uplen,sizeof(up) - uplen);[13;1H                while ((r == -1) && (errno == EINTR));[14;1H                if (r == -1) _exit(111);[15;1H                if (r == 0) break;[16;1H                uplen += r;[17;1H                if (uplen >= sizeof(up)) _exit(1);[18;1H        }[K[20;9Hclose(3);[21;1H[K[22;1H        i = 0;[23;9Hlogin = up + i;[24;1H        while (up[i++]) if (i == uplen) _exit(2);[K[25;1H        password = up + i;[K[26;9Hif (i == uplen) _exit(2);[27;1H        while (up[i++]) if (i == uplen) _exit(2);[28;1H [29;9Hc = login;[K[30;9Hwhile (*c) {[K[31;9H        if ((*c == ':') || (*c == '@')) {[32;9H                *c++ = '\0';[33;9H                domain = c;[34;9H                break;[35;9H        }[36;9H        c++;[K[37;9H}[K[38;9Hif (!domain) {[39;9H        if (!stat(DEFAULTDOMAIN,&st)) {[40;9H                domain = malloc(st.st_size + 1);[41;9H                if ((p = fopen(DEFAULTDOMAIN, "r"))) {[42;9H                        fgets(domain,st.st_size,p);[43;9H                        i = 0;[44;9H                        while (domain[i]) {[45;9H                                if ((domain[i] == '\r') || (domain[i] =$[46;9H                                        domain[i] = '\0';[47;49Hbreak;[48;9H                                }[49;9H                                i++;[50;17H                }[K[51;17H                fclose(p);[K[52;17H        } else {[K[53;17H                domain = malloc(256);[54;17H                gethostname(domain, 256);[55;17H        }[K[56;9H        } else {[57;25Hdomain = malloc(256);[58;9H                gethostname(domain, 256);[59;17H}[60;9H}[K[61;9Hif ((p = fopen(VIRTUALHOSTS, "r"))) {[62;9H        while (fgets(buffer, sizeof(buffer), p)) {[63;9H                virtual = buffer;[64;9H                i = 0;   [65;9H                while (buffer[i] && (buffer[i] != ':')) i++;[66;25Hif (!buffer[i]) exit(2);[67;9H                buffer[i++] = '\0';[68;9H                maintainer = buffer + i;[69;17H        while (buffer[i] && (buffer[i] != '\r')[70;25H                 && (buffer[i] != '\n')) i++;[71;25Hbuffer[i] = '\0';[72;25Hif (!strcmp(virtual,domain)) {[73;17H                if (!(pw = getpwnam(maintainer))) exit(2);[74;17H                if (chdir(pw->pw_dir) == -1) exit(2);[75;9H                        if (chdir(domain) == -1) exit(2);[76;9H                        uid = pw->pw_uid;[77;17H                gid = pw->pw_gid;[78;25H        setenv("USER", pw->pw_name, 1);[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;9H                if ((p = fopen(DEFAULTDOMAIN, "r"))) {[4;9H                        fgets(domain,st.st_size,p);[5;9H                        i = 0;[6;9H                        while (domain[i]) {[7;9H                                if ((domain[i] == '\r') || (domain[i] =$[8;9H                                        domain[i] = '\0';[9;49Hbreak;[10;9H                                }[11;9H                                i++;[12;17H                }[K[13;17H                fclose(p);[K[14;17H        } else {[K[15;17H                domain = malloc(256);[16;17H                gethostname(domain, 256);[17;17H        }[K[18;9H        } else {[19;25Hdomain = malloc(256);[20;9H                gethostname(domain, 256);[21;17H}[22;9H}[K[23;9Hif ((p = fopen(VIRTUALHOSTS, "r"))) {[24;9H        while (fgets(buffer, sizeof(buffer), p)) {[25;9H                virtual = buffer;[26;9H                i = 0;   [27;9H                while (buffer[i] && (buffer[i] != ':')) i++;[28;25Hif (!buffer[i]) exit(2);[29;9H                buffer[i++] = '\0';[30;9H                maintainer = buffer + i;[31;17H        while (buffer[i] && (buffer[i] != '\r')[32;25H                 && (buffer[i] != '\n')) i++;[33;25Hbuffer[i] = '\0';[34;25Hif (!strcmp(virtual,domain)) {[35;17H                if (!(pw = getpwnam(maintainer))) exit(2);[36;17H                if (chdir(pw->pw_dir) == -1) exit(2);[37;9H                        if (chdir(domain) == -1) exit(2);[38;9H                        uid = pw->pw_uid;[39;17H                gid = pw->pw_gid;[40;25H        setenv("USER", pw->pw_name, 1);[41;25H        setenv("HOME", pw->pw_dir, 1);[42;33Hif (!(p = fopen("passwd", "r"))) exit(1);[43;33Hwhile ((pw = fgetpwent(p)))[44;33H        if (!strcmp(login,pw->pw_name)) break;[45;33Hfclose(p);[K[46;33Hif (!pw) exit(1);[K[47;33Hstored = pw->pw_passwd;[48;33Hmaildir = malloc(strlen(pw->pw_dir) + 3);[49;33Hsprintf(maildir,".%s",pw->pw_dir);[50;33Hargv[argc - 1] = maildir;[51;33Hbreak;[K[52;27H[K[53;17H}[K[54;17Hfclose(p);[K[55;9H}[K[56;9Hif (!uid) {[K[57;17Hchdir("/etc");[K[58;17Hif (!(p = fopen("passwd", "r"))) exit(1);[59;17Hwhile ((pw = fgetpwent(p)))[60;9H                if (!strcmp(login, pw->pw_name)) break;[61;9H        fclose(p);[K[62;17Hif (!pw) exit(1);[K[63;17Hif (!(p = fopen("shadow", "r"))) exit(1);[64;17Hwhile ((sp = fgetspent(p)))[65;25Hif (!strcmp(login, sp->sp_namp)) break;[K[66;17Hfclose(p);[K[67;17Hif (!sp) exit(1);[K[68;17Hsetenv("USER", pw->pw_name, 1); [69;17Hsetenv("HOME", pw->pw_dir, 1);[K[70;17Hstored = sp->sp_pwdp;[K[71;17Huid = pw->pw_uid;[K[72;17Hgid = pw->pw_gid;[K[73;17Hif (chdir(pw->pw_dir) == -1) exit(1);[K[74;9H}[K[75;9Hif (!strncmp(stored,"$1$",3)) {[K[76;17Hencrypted = md5_crypt(password, stored);[77;9H} else {[K[78;17Hencrypted = crypt(password, stored);[K[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;25H        setenv("HOME", pw->pw_dir, 1);[4;33Hif (!(p = fopen("passwd", "r"))) exit(1);[5;33Hwhile ((pw = fgetpwent(p)))[6;33H        if (!strcmp(login,pw->pw_name)) break;[7;33Hfclose(p);[K[8;33Hif (!pw) exit(1);[K[9;33Hstored = pw->pw_passwd;[10;33Hmaildir = malloc(strlen(pw->pw_dir) + 3);[11;33Hsprintf(maildir,".%s",pw->pw_dir);[12;33Hargv[argc - 1] = maildir;[13;33Hbreak;[K[14;27H[K[15;17H}[K[16;17Hfclose(p);[K[17;9H}[K[18;9Hif (!uid) {[K[19;17Hchdir("/etc");[K[20;17Hif (!(p = fopen("passwd", "r"))) exit(1);[21;17Hwhile ((pw = fgetpwent(p)))[22;9H                if (!strcmp(login, pw->pw_name)) break;[23;9H        fclose(p);[K[24;17Hif (!pw) exit(1);[K[25;17Hif (!(p = fopen("shadow", "r"))) exit(1);[26;17Hwhile ((sp = fgetspent(p)))[27;25Hif (!strcmp(login, sp->sp_namp)) break;[K[28;17Hfclose(p);[K[29;17Hif (!sp) exit(1);[K[30;17Hsetenv("USER", pw->pw_name, 1); [31;17Hsetenv("HOME", pw->pw_dir, 1);[K[32;17Hstored = sp->sp_pwdp;[K[33;17Huid = pw->pw_uid;[K[34;17Hgid = pw->pw_gid;[K[35;17Hif (chdir(pw->pw_dir) == -1) exit(1);[K[36;9H}[K[37;9Hif (!strncmp(stored,"$1$",3)) {[K[38;17Hencrypted = md5_crypt(password, stored);[39;9H} else {[K[40;17Hencrypted = crypt(password, stored);[K[41;9H}[K[42;33H[K[43;9Hfor (i = 0;i < sizeof(up);++i) up[i] = 0;[K[44;9Hif (!*stored || strcmp(encrypted,stored)) _exit(1);[K[45;33H[K[46;9Hsetgroups(1,&gid);[K[47;9Hsetgid(gid);[K[48;9Hsetuid(uid);[K[49;33H[K[50;9Hexecvp(argv[1],argv + 1);[K[51;9H_exit(111);[K[52;1H}[K[53;17H [54;17H[K[55;9H [56;9H[K[57;17H[K[58;17H[K[59;17H[K[60;25H[K[61;17H[K[62;17H[K[63;17H[K[64;17H[K[65;25H[K[66;17H[K[67;17H[K[68;17H[K[69;17H[K[70;17H[K[71;17H[K[72;17H[K[73;17H[K[74;9H [75;9H[K[76;17H[K[77;9H[K[78;17H[K[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[80;1H[K[81;1H[K[?1047l[?1048l]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls
+[00m[00mcrypt_md5.c[00m  [00mmctime.c[00m  [00mmd5.h[00m    [00mtouch.o[00m          [00mvmail-popbull.c[00m
+[00mcrypt_md5.o[00m  [00mmctime.o[00m  [00mmd5.o[00m    [00mvmail-checkpw.c[00m  [00mvmail-popbull.o[00m
+[00mit[00m           [00mmd5.c[00m     [00mtouch.c[00m  [00mvmail-checkpw.o[00m  [01;32mvmail-vcheckpw[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ mv vmail-vcheckpw vmail-checkpw
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls
+[00m[00mcrypt_md5.c[00m  [00mmctime.c[00m  [00mmd5.h[00m    [00mtouch.o[00m          [00mvmail-checkpw.o[00m
+[00mcrypt_md5.o[00m  [00mmctime.o[00m  [00mmd5.o[00m    [01;32mvmail-checkpw[00m    [00mvmail-popbull.c[00m
+[00mit[00m           [00mmd5.c[00m     [00mtouch.c[00m  [00mvmail-checkpw.c[00m  [00mvmail-popbull.o[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -cvma    vmail-popbull.c
+vmail-popbull.c: In function `maildir_makefilename':
+vmail-popbull.c:29: `errno' undeclared (first use in this function)
+vmail-popbull.c:29: (Each undeclared identifier is reported only once
+vmail-popbull.c:29: for each function it appears in.)
+vmail-popbull.c:29: `ENOENT' undeclared (first use in this function)
+vmail-popbull.c: In function `main':
+vmail-popbull.c:57: invalid lvalue in decrement
+vmail-popbull.c:59: too few arguments to function `mkdir'
+vmail-popbull.c:63: `cur' undeclared (first use in this function)
+vmail-popbull.c:63: too few arguments to function `mkdir'
+vmail-popbull.c:64: `new' undeclared (first use in this function)
+vmail-popbull.c:64: too few arguments to function `mkdir'
+vmail-popbull.c:65: `tmp' undeclared (first use in this function)
+vmail-popbull.c:65: too few arguments to function `mkdir'
+vmail-popbull.c:73: `O_CREAT' undeclared (first use in this function)
+vmail-popbull.c:73: `O_TRUNC' undeclared (first use in this function)
+vmail-popbull.c:90: warning: passing arg 1 of `close' makes integer from pointer without a cast
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+vmail-popbull.c: In function `maildir_makefilename':
+vmail-popbull.c:30: `errno' undeclared (first use in this function)
+vmail-popbull.c:30: (Each undeclared identifier is reported only once
+vmail-popbull.c:30: for each function it appears in.)
+vmail-popbull.c: In function `main':
+vmail-popbull.c:58: invalid lvalue in decrement
+vmail-popbull.c:60: too few arguments to function `mkdir'
+vmail-popbull.c:64: `cur' undeclared (first use in this function)
+vmail-popbull.c:64: too few arguments to function `mkdir'
+vmail-popbull.c:65: `new' undeclared (first use in this function)
+vmail-popbull.c:65: too few arguments to function `mkdir'
+vmail-popbull.c:66: `tmp' undeclared (first use in this function)
+vmail-popbull.c:66: too few arguments to function `mkdir'
+vmail-popbull.c:74: `O_CREAT' undeclared (first use in this function)
+vmail-popbull.c:74: `O_TRUNC' undeclared (first use in this function)
+vmail-popbull.c:91: warning: passing arg 1 of `close' makes integer from pointer without a cast
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+vmail-popbull.c: In function `main':
+vmail-popbull.c:60: invalid lvalue in decrement
+vmail-popbull.c:66: `cur' undeclared (first use in this function)
+vmail-popbull.c:66: (Each undeclared identifier is reported only once
+vmail-popbull.c:66: for each function it appears in.)
+vmail-popbull.c:67: `new' undeclared (first use in this function)
+vmail-popbull.c:68: `tmp' undeclared (first use in this function)
+vmail-popbull.c:76: `O_CREAT' undeclared (first use in this function)
+vmail-popbull.c:76: `O_TRUNC' undeclared (first use in this function)
+vmail-popbull.c:93: warning: passing arg 1 of `close' makes integer from pointer without a cast
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+vmail-popbull.c: In function `main':
+vmail-popbull.c:60: invalid lvalue in decrement
+vmail-popbull.c:76: `O_CREAT' undeclared (first use in this function)
+vmail-popbull.c:76: (Each undeclared identifier is reported only once
+vmail-popbull.c:76: for each function it appears in.)
+vmail-popbull.c:76: `O_TRUNC' undeclared (first use in this function)
+vmail-popbull.c:93: warning: passing arg 1 of `close' makes integer from pointer without a cast
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ 
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+vmail-popbull.c: In function `main':
+vmail-popbull.c:61: invalid lvalue in decrement
+vmail-popbull.c:94: warning: passing arg 1 of `close' makes integer from pointer without a cast
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+vmail-popbull.c: In function `main':
+vmail-popbull.c:61: invalid lvalue in decrement
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cc -o vmail-popbull.o -c vmail-popbull.c[1P[1P vmail-popbull.c 0pbull.0 oo[1P[1P
+]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls -l
+[00mtotal 168
+-rw-r--r--    1 dan      staff        3860 Mar 11 11:23 [00mcrypt_md5.c[00m
+-rw-r--r--    1 dan      staff       17524 Mar 11 11:23 [00mcrypt_md5.o[00m
+-rw-r--r--    1 dan      staff       16384 Mar 11 23:18 [00mit[00m
+-rw-r--r--    1 dan      staff         381 Mar 11 11:23 [00mmctime.c[00m
+-rw-r--r--    1 dan      staff         928 Mar 11 11:23 [00mmctime.o[00m
+-rw-r--r--    1 dan      staff       10699 Mar 11 11:23 [00mmd5.c[00m
+-rw-r--r--    1 dan      staff        1931 Mar 11 11:23 [00mmd5.h[00m
+-rw-r--r--    1 dan      staff       11072 Mar 11 11:23 [00mmd5.o[00m
+-rw-r--r--    1 dan      staff         279 Mar 11 11:23 [00mtouch.c[00m
+-rw-r--r--    1 dan      staff         936 Mar 11 11:23 [00mtouch.o[00m
+-rwxr-xr-x    1 dan      staff       44775 Mar 11 12:59 [01;32mvmail-checkpw[00m
+-rw-r--r--    1 dan      staff        3648 Mar 11 13:02 [00mvmail-checkpw.c[00m
+-rw-r--r--    1 dan      staff        5204 Mar 11 12:59 [00mvmail-checkpw.o[00m
+-rwxr-xr-x    1 dan      staff       19377 Mar 11 23:27 [01;32mvmail-popbull[00m
+-rw-r--r--    1 dan      staff        2244 Mar 11 23:26 [00mvmail-popbull.c[00m
+-rw-r--r--    1 dan      staff        3072 Mar 11 23:26 [00mvmail-popbull.o[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ ls ..
+[00m[01;34mMaildir[00m                     [01;32mqmail-autoturn[00m             [01;32mvcheckpw[00m
+[00mcheckrelay.c[00m                [01;32mqmail-mailhub[00m              [01;32mvdeliver[00m
+[00mdead.letter[00m                 [01;32mqmail-pop3d[00m                [01;32mvdeliver.sh[00m
+[01;34mmail[00m                        [01;32mqmail-smtpd[00m                [01;34mvirtualftpd-6.5.8[00m
+[01;34mmaildirdeliver-0.50[00m         [01;34mradius-980618-mods[00m         [01;31mvirtualftpd.tgz[00m
+[01;31mmaildirdeliver-0.50.tar.gz[00m  [01;31mradius-980618-mods.tar.gz[00m  [01;34mvmailmgr[00m
+[00mmixed[00m                       [01;34mshadow-20000902[00m            [01;31mvmailmgr-0.96.9.tar.gz[00m
+[01;31mmkCDrec_v0.4.8.tar.gz[00m       [01;34msirius.msl.net[00m             [01;34mvpopmail-5.2[00m
+[01;34mmkcdrec[00m                     [00musers.schema[00m               [01;31mvpopmail-5.2.tar.gz[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/vmailmgr[dan@sirius vmailmgr]$ cd ../maildirdeliver-0.50
+]0;dan@sirius.msl.net: /home/staff/dan/maildirdeliver-0.50[dan@sirius maildirdeliver-0.50]$ ls
+[00m[00mFILES[00m        [00mauto_home.h[00m  [00mexit.h[00m     [01;32mload[00m         [00msig.a[00m       [01;32mvdeliver[00m
+[00mFILES.qmail[00m  [00mauto_home.o[00m  [00mfifo.o[00m     [00mnow.h[00m        [00msig.h[00m       [00mvdeliver.0[00m
+[00mINSTALL[00m      [00mbyte.h[00m       [00mfmt.h[00m      [00mnow.o[00m        [00mstr.a[00m       [00mvdeliver.1[00m
+[00mMakefile[00m     [01;32mcompile[00m      [00mfs.a[00m       [00mopen.a[00m       [00mstr.h[00m       [00mvdeliver.c[00m
+[00mREADME[00m       [00mconf-home[00m    [00mhier.c[00m     [00mopen.h[00m       [00mstrerr.a[00m    [00mvdeliver.o[00m
+[00mTARGETS[00m      [00mdatetime.h[00m   [00mhier.o[00m     [01;36mqmail[00m        [00mstrerr.h[00m
+[01;32mauto-str[00m     [00merror.a[00m      [01;32minstall[00m    [01;34mqmail-1.03[00m   [00msubstdio.a[00m
+[00mauto_home.c[00m  [00merror.h[00m      [00minstall.o[00m  [00mreadwrite.h[00m  [00msubstdio.h[00m
+[m]0;dan@sirius.msl.net: /home/staff/dan/maildirdeliver-0.50[dan@sirius maildirdeliver-0.50]$ pico vdeliver.c
+[?1048h[?1047h[1;81r[1;1H[J[7m   UW PICO(tm) 4.2                New Buffer                                    [27m[80;1H[K[81;1H[K[80;1H[7m^[27m[7mG[27m Get Help  [7m^[27m[7mO[27m WriteOut  [7m^[27m[7mR[27m Read File [7m^[27m[7mY[27m Prev Pg   [7m^[27m[7mK[27m Cut Text  [7m^[27m[7mC[27m Cur Pos   [K[81;1H[7m^[27m[7mX[27m Exit      [7m^[27m[7mJ[27m Justify   [7m^[27m[7mW[27m Where is  [7m^[27m[7mV[27m Next Pg   [7m^[27m[7mU[27m UnCut Text[7m^[27m[7mT[27m To Spell  [K[3;1H[79;1H[K[79;33H[7m[ Reading file ][27m[79;1H[K[79;32H[7m[ Read 199 lines ][27m[1;35H[7mFile: vdeliver.c[27m[3;1H#include <pwd.h>[4;1H#include <sys/types.h>[5;1H#include <sys/stat.h>[6;1H#include <stdlib.h>[7;1H#include <string.h>[8;1H#include <stdio.h>[9;1H#include <fcntl.h>[10;1H#include "byte.h"[11;1H#include "error.h"[12;1H#include "exit.h"[13;1H#include "fmt.h"[14;1H#include "now.h"[15;1H#include "open.h"[16;1H#include "readwrite.h"[17;1H#include "sig.h"[18;1H#include "str.h"[19;1H#include "strerr.h"[20;1H#include "substdio.h"[22;1H#define FATAL "vdeliver: fatal: "[23;1H#define PERM 100[24;1H#define TEMP 111[26;1Hextern int alarm();[27;1Hextern int chdir();[28;1Hextern int close();[29;1Hextern int fsync();[30;1Hextern int gethostname();[31;1Hextern int getpid();[32;1Hextern int link();[33;1Hextern int sleep();[34;1Hextern int unlink();[36;1Hstatic char inbuf[1024];[37;1Hstatic char outbuf[1024];[39;1Hstatic char fntmptph[80 + FMT_ULONG * 2];[40;1Hstatic char fnnewtph[80 + FMT_ULONG * 2];[42;1Hstatic void exitnicely (int code)[43;1H{[44;5Hunlink(fntmptph);[45;5H_exit(code);[46;1H}[48;1Hstatic void sigalrm (void)[49;1H{[50;5Hstrerr_warn2(FATAL, "timeout on delivery", (struct strerr *) 0);[51;5Hexitnicely(TEMP);[52;1H}[54;1Hstatic void die_read (void)[55;1H{[56;5Hstrerr_warn2(FATAL, "unable to read message: ", &strerr_sys);[57;5Hexitnicely(TEMP);[58;1H}[60;1Hint main (int argc, char **argv)[61;1H{[62;5Hchar *dir = NULL;[63;5Hint code;[64;5Hunsigned long pid;[65;5Hunsigned long time;[66;5Hchar host[64];[67;5Hchar *s;[68;5Hint loop;[69;5Hstruct stat st;[70;5Hint fd;[71;5Hsubstdio ss;[72;5Hsubstdio ssout;[73;5Hint r;[74;5Hchar c;[75;5Hchar *del_home;[76;5Hchar *del_host;[77;5Hchar *del_ext;[78;5Hchar *path;[3;1H[4;1H[5;1H[6;1H[7;1H[8;1H[9;1H[10;1H[11;1H[12;1H[13;1H[14;1H[15;1H[16;1H[17;1H[18;1H[19;1H[20;1H[21;1H[22;1H[23;1H[24;1H[25;1H[26;1H[27;1H[28;1H[79;1H[K[29;1H[30;1H[31;1H[32;1H[33;1H[34;1H[35;1H[36;1H[37;1H[38;1H[39;1H[40;1H[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;1H[K[4;1Hstatic void exitnicely (int code)[5;1H{[K[6;1H    unlink(fntmptph);[7;1H    _exit(code);   [8;1H}[K[9;1H[K[10;1Hstatic void sigalrm (void)[11;1H{[K[12;1H    strerr_warn2(FATAL, "timeout on delivery", (struct strerr *) 0);[13;1H    exitnicely(TEMP);[14;1H}[K[15;1H[K[16;1Hstatic void die_read (void)[17;1H{[K[18;1H    strerr_warn2(FATAL, "unable to read message: ", &strerr_sys);[19;1H    exitnicely(TEMP);[20;1H}[K[22;1Hint main (int argc, char **argv) [23;1H{[K[24;1H    char *dir = NULL;[25;5Hint code;[26;1H    unsigned long pid;[27;1H    unsigned long time;[28;1H    char host[64]; [29;1H    char *s;[K[30;1H    int loop;[K[31;1H    struct stat st; [32;1H    int fd;[K[33;1H    substdio ss;   [34;1H    substdio ssout; [35;5Hint r;[36;1H    char c;[K[37;1H    char *del_home;[K[38;5Hchar *del_host;[39;1H    char *del_ext;[K[40;1H    char *path;[K[41;5Hchar *default_dir = NULL;[42;1H    FILE *passwdf;[K[43;1H    struct passwd *pwd;[44;5H[K[45;5Hif (!(del_home = getenv("HOME"))) {[46;1H        strerr_die1x(PERM, "vdeliver: HOME not set");[47;5H}[48;1H    if (!(del_host = getenv("HOST"))) {[49;1H        strerr_die1x(PERM, "vdeliver: HOST not set");[50;5H}[K[51;5Hif (!(del_ext = getenv("EXT"))) {[52;1H        strerr_die1x(PERM, "vdeliver: EXT not set");[53;5H}[54;1H    umask(077);[K[55;1H    path = malloc(strlen(del_home) + strlen(del_host) + 10);[56;6Hprintf(path,"%s/%s/passwd",del_home,del_host);[K[57;5Hif ((passwdf = fopen(path,"r")) == NULL) {[58;1H        strerr_die4sys(TEMP, FATAL, "unable to open ", path, ": ");[59;5H}[60;1H    pwd = fgetpwent(passwdf);   [61;1H    while (pwd) {[62;5H    if (!strcmp(pwd->pw_name,del_ext)) {[63;5H        dir = malloc(strlen(del_home) + strlen(del_host)[64;5H                    + strlen(pwd->pw_dir) + 2);[65;5H        sprintf(dir,"%s/%s%s",del_home,del_host,pwd->pw_dir);[66;5H        break[67;5H    } else if (!strcmp(pwd->pw_name,"+")) {[68;5H        default_dir = malloc(strlen(pwd->pw_dir) + 1);[69;5H        strcpy(default_dir,pwd->pw_dir);[70;5H    }  [71;5H    pwd = fgetpwent(passwdf);[72;5H}[K[73;5Hfclose(passwdf);[74;5Hif (!dir) {[75;5H    if (default_dir) {[76;5H        dir = malloc(strlen(del_home) + strlen(del_host)[77;5H                    + strlen(default_dir) + 2);[78;5H        sprintf(dir,"%s/%s%s",del_home,del_host,default_dir);[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;5Hchar *default_dir = NULL;[4;1H    FILE *passwdf;[K[5;1H    struct passwd *pwd;[6;5H[K[7;5Hif (!(del_home = getenv("HOME"))) {[8;1H        strerr_die1x(PERM, "vdeliver: HOME not set");[9;5H}[10;1H    if (!(del_host = getenv("HOST"))) {[11;1H        strerr_die1x(PERM, "vdeliver: HOST not set");[12;5H}[K[13;5Hif (!(del_ext = getenv("EXT"))) {[14;1H        strerr_die1x(PERM, "vdeliver: EXT not set");[15;5H}[16;1H    umask(077);[K[17;1H    path = malloc(strlen(del_home) + strlen(del_host) + 10);[18;6Hprintf(path,"%s/%s/passwd",del_home,del_host);[K[19;5Hif ((passwdf = fopen(path,"r")) == NULL) {[20;1H        strerr_die4sys(TEMP, FATAL, "unable to open ", path, ": ");[21;5H}[22;1H    pwd = fgetpwent(passwdf);   [23;1H    while (pwd) {[24;5H    if (!strcmp(pwd->pw_name,del_ext)) {[25;5H        dir = malloc(strlen(del_home) + strlen(del_host)[26;5H                    + strlen(pwd->pw_dir) + 2);[27;5H        sprintf(dir,"%s/%s%s",del_home,del_host,pwd->pw_dir);[28;5H        break[29;5H    } else if (!strcmp(pwd->pw_name,"+")) {[30;5H        default_dir = malloc(strlen(pwd->pw_dir) + 1);[31;5H        strcpy(default_dir,pwd->pw_dir);[32;5H    }  [33;5H    pwd = fgetpwent(passwdf);[34;5H}[K[35;5Hfclose(passwdf);[36;5Hif (!dir) {[37;5H    if (default_dir) {[38;5H        dir = malloc(strlen(del_home) + strlen(del_host)[39;5H                    + strlen(default_dir) + 2);[40;5H        sprintf(dir,"%s/%s%s",del_home,del_host,default_dir);[41;5H    } else {[K[42;5H        strerr_die4sys(PERM, FATAL, "underlying user does not exist ",[43;5H                    del_ext, ": ");[44;9H}[45;5H}[K[46;9H[K[47;5Hsig_alarmcatch(sigalrm);[48;5H[K[49;5Hif (chdir(dir) == -1) {[K[50;5H    mkdir(dir,0700);[51;5H    if (chdir(dir) == -1) {[K[52;9H    code = error_temp(errno) ? TEMP : PERM; [53;5H        strerr_die4sys(code, FATAL, "unable to chdir to ", dir, ": ");[54;5H    }[K[55;5H    mkdir("cur",0700);[K[56;5H    mkdir("new",0700);[K[57;5H    mkdir("tmp",0700);[K[58;5H}[K[59;5H [60;6Hid = getpid();[K[61;5Hhost[0] = '\0';[62;5Hgethostname(host, sizeof(host));[K[63;5Hfor (loop = 0;; ++loop) {[K[64;9Htime = now();[K[65;9Hs = fntmptph;[K[66;9Hs += fmt_str(s, "tmp/");[67;9Hs += fmt_ulong(s, time); *s++ = '.';   [68;9Hs += fmt_ulong(s, pid); *s++ = '.';[K[69;9Hs += fmt_strn(s, host, sizeof(host)); *s++ = 0;[70;9Hif (stat(fntmptph, &st) == -1) if (errno == error_noent) break;[71;9Hif (loop == 2)[K[72;5H        strerr_die2x(TEMP, FATAL, "unable to get temporary file name");[73;5H    sleep(2);   [74;5H}[K[75;5Hstr_copy(fnnewtph, fntmptph);[76;5Hbyte_copy(fnnewtph, 3, "new");[K[77;25H[K[78;5Halarm(86400);[K[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;5H    } else {[K[4;5H        strerr_die4sys(PERM, FATAL, "underlying user does not exist ",[5;5H                    del_ext, ": ");[6;9H}[7;5H}[K[8;9H[K[9;5Hsig_alarmcatch(sigalrm);[10;5H[K[11;5Hif (chdir(dir) == -1) {[K[12;5H    mkdir(dir,0700);[13;5H    if (chdir(dir) == -1) {[K[14;9H    code = error_temp(errno) ? TEMP : PERM; [15;5H        strerr_die4sys(code, FATAL, "unable to chdir to ", dir, ": ");[16;5H    }[K[17;5H    mkdir("cur",0700);[K[18;5H    mkdir("new",0700);[K[19;5H    mkdir("tmp",0700);[K[20;5H}[K[21;5H [22;6Hid = getpid();[K[23;5Hhost[0] = '\0';[24;5Hgethostname(host, sizeof(host));[K[25;5Hfor (loop = 0;; ++loop) {[K[26;9Htime = now();[K[27;9Hs = fntmptph;[K[28;9Hs += fmt_str(s, "tmp/");[29;9Hs += fmt_ulong(s, time); *s++ = '.';   [30;9Hs += fmt_ulong(s, pid); *s++ = '.';[K[31;9Hs += fmt_strn(s, host, sizeof(host)); *s++ = 0;[32;9Hif (stat(fntmptph, &st) == -1) if (errno == error_noent) break;[33;9Hif (loop == 2)[K[34;5H        strerr_die2x(TEMP, FATAL, "unable to get temporary file name");[35;5H    sleep(2);   [36;5H}[K[37;5Hstr_copy(fnnewtph, fntmptph);[38;5Hbyte_copy(fnnewtph, 3, "new");[K[39;25H[K[40;5Halarm(86400);[K[41;9H[K[42;5Hfd = open_excl(fntmptph);[K[43;5Hif (fd == -1)[K[44;9Hstrerr_die4sys(TEMP, FATAL, "unable to open ", fntmptph, ": ");[45;5Hsubstdio_fdbuf(&ss, read, 0, inbuf, sizeof(inbuf));[46;5Hsubstdio_fdbuf(&ssout, write, fd, outbuf, sizeof(outbuf));[47;5H[K[48;5H/* discard initial From line, if any. */[49;5Hfor (;;) {[K[50;9Hr = substdio_feed(&ss);[51;13Hr == -1) die_read();[52;9Hif (r == 0) break;[K[53;9Hif (r >= 5) break;[K[54;5H}[K[55;5Hif ((r >= 5) && (byte_equal(substdio_PEEK(&ss), 5, "From "))) {[56;9Hfor (;;) {[K[57;9H    r = substdio_get(&ss, &c, 1);[58;5H        if (r == -1) die_read();[59;13Hif (r == 0) break;[60;5H        if (c == '\n') break;[61;5H    }[K[62;5H}[K[63;5H[K[64;5Hswitch (substdio_copy(&ssout, &ss)) {[65;5Hcase -2:[K[66;9Hdie_read();[K[67;5Hcase -3:[K[68;10Htrerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[69;9Hexitnicely(TEMP);[K[70;5H}[K[71;9H[K[72;5Hr = substdio_flush(&ssout);[K[73;5Hif (r != -1) r = fsync(fd);[74;5Hif (r != -1) r = close(fd);[75;5Hif (r == -1) {[K[76;5H    strerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[77;9Hexitnicely(TEMP);[78;5H}[K[41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[51;1H[52;1H[53;1H[54;1H[55;1H[56;1H[57;1H[58;1H[59;1H[60;1H[61;1H[62;1H[63;1H[64;1H[65;1H[66;1H[67;1H[68;1H[69;1H[70;1H[71;1H[72;1H[73;1H[74;1H[75;1H[76;1H[77;1H[78;1H[3;9H[K[4;5Hfd = open_excl(fntmptph);[K[5;5Hif (fd == -1)[K[6;9Hstrerr_die4sys(TEMP, FATAL, "unable to open ", fntmptph, ": ");[7;5Hsubstdio_fdbuf(&ss, read, 0, inbuf, sizeof(inbuf));[8;5Hsubstdio_fdbuf(&ssout, write, fd, outbuf, sizeof(outbuf));[9;5H[K[10;5H/* discard initial From line, if any. */[11;5Hfor (;;) {[K[12;9Hr = substdio_feed(&ss);[13;13Hr == -1) die_read();[14;9Hif (r == 0) break;[K[15;9Hif (r >= 5) break;[K[16;5H}[K[17;5Hif ((r >= 5) && (byte_equal(substdio_PEEK(&ss), 5, "From "))) {[18;9Hfor (;;) {[K[19;9H    r = substdio_get(&ss, &c, 1);[20;5H        if (r == -1) die_read();[21;13Hif (r == 0) break;[22;5H        if (c == '\n') break;[23;5H    }[K[24;5H}[K[25;5H[K[26;5Hswitch (substdio_copy(&ssout, &ss)) {[27;5Hcase -2:[K[28;9Hdie_read();[K[29;5Hcase -3:[K[30;10Htrerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[31;9Hexitnicely(TEMP);[K[32;5H}[K[33;9H[K[34;5Hr = substdio_flush(&ssout);[K[35;5Hif (r != -1) r = fsync(fd);[36;5Hif (r != -1) r = close(fd);[37;5Hif (r == -1) {[K[38;5H    strerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[39;9Hexitnicely(TEMP);[40;5H}[K[42;5Hif (link(fntmptph, fnnewtph) == -1) {[43;5H    strerr_warn4(FATAL, "unable to link ", fnnewtph, ": ", &strerr_sys);[44;9Hexitnicely(TEMP);[K[45;5H}[K[46;5H[K[47;5Hexitnicely(0);[48;5Hreturn 0; /* shut up gcc -Wall */[K[49;1H}[K[50;9H[K[51;9H[K[52;9H[K[53;9H[K[54;5H [55;5H[K[56;9H[K[57;13H[K[58;13H[K[59;13H[K[60;13H[K[61;9H [62;5H [64;5H[K[65;5H[K[66;9H[K[67;5H[K[68;9H[K[69;9H[K[70;5H [72;5H[K[73;5H[K[74;5H[K[75;5H[K[76;9H[K[77;9H[K[78;5H [41;1H[42;1H[43;1H[44;1H[45;1H[46;1H[47;1H[48;1H[49;1H[50;1H[49;1H[48;1H[47;1H[46;1H[45;1H[44;1H[43;1H[42;1H[41;1H[40;1H[39;1H[38;1H[37;1H[36;1H[35;1H[34;1H[33;1H[32;1H[31;1H[30;1H[29;1H[28;1H[27;1H[26;1H[25;1H[24;1H[23;1H[22;1H[21;1H[20;1H[19;1H[18;1H[17;1H[16;1H[15;1H[14;1H[13;1H[12;1H[11;1H[10;1H[9;1H[8;1H[7;1H[6;1H[5;1H[4;1H[3;1H[3;13Hsprintf(dir,"%s/%s%s",del_home,del_host,default_dir);[4;5H    } else {[K[5;5H        strerr_die4sys(PERM, FATAL, "underlying user does not exist ",[6;9H                del_ext, ": ");[K[7;5H    }[K[8;5H}[K[10;5Hsig_alarmcatch(sigalrm);[K[11;5H[K[12;5Hif (chdir(dir) == -1) {[K[13;9Hmkdir(dir,0700);[K[14;13Hchdir(dir) == -1) {[15;9H    code = error_temp(errno) ? TEMP : PERM;[16;5H        strerr_die4sys(code, FATAL, "unable to chdir to ", dir, ": ");[17;5H    }[K[18;9Hmkdir("cur",0700);[19;9Hmkdir("new",0700);[K[20;9Hmkdir("tmp",0700);[K[21;5H}[K[22;13H[K[23;5Hpid = getpid();[24;5Hhost[0] = '\0';[25;5Hgethostname(host, sizeof(host));[26;5Hfor (loop = 0;; ++loop) {[K[27;5H    time = now();[28;9Hs = fntmptph;[29;5H    s += fmt_str(s, "tmp/");[30;10H += fmt_ulong(s, time); *s++ = '.';[K[31;9Hs += fmt_ulong(s, pid); *s++ = '.';[32;5H    s += fmt_strn(s, host, sizeof(host)); *s++ = 0;[33;9Hif (stat(fntmptph, &st) == -1) if (errno == error_noent) break;[34;5H    if (loop == 2)[K[35;5H        strerr_die2x(TEMP, FATAL, "unable to get temporary file name");[36;5H    sleep(2);[K[37;5H}[K[38;5Hstr_copy(fnnewtph, fntmptph);[K[39;5Hbyte_copy(fnnewtph, 3, "new");[40;5H [41;5Halarm(86400);[42;5H[K[43;5Hfd = open_excl(fntmptph);[K[44;5Hif (fd == -1)[K[45;5H    strerr_die4sys(TEMP, FATAL, "unable to open ", fntmptph, ": ");[46;5Hsubstdio_fdbuf(&ss, read, 0, inbuf, sizeof(inbuf));[47;5Hsubstdio_fdbuf(&ssout, write, fd, outbuf, sizeof(outbuf));[48;5H[K[49;1H    /* discard initial From line, if any. */[50;5Hfor (;;) {[51;9Hr = substdio_feed(&ss);[52;9Hif (r == -1) die_read();[53;9Hif (r == 0) break;[54;9Hif (r >= 5) break;[55;5H}[56;5Hif ((r >= 5) && (byte_equal(substdio_PEEK(&ss), 5, "From "))) {[57;9Hfor (;;) {[58;13Hr = substdio_get(&ss, &c, 1);[59;13Hif (r == -1) die_read();[60;13Hif (r == 0) break;[61;13Hif (c == '\n') break;[62;9H}[63;5H}[65;5Hswitch (substdio_copy(&ssout, &ss)) {[66;5Hcase -2:[67;9Hdie_read();[68;5Hcase -3:[69;9Hstrerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[70;9Hexitnicely(TEMP);[71;5H}[73;5Hr = substdio_flush(&ssout);[74;5Hif (r != -1) r = fsync(fd);[75;5Hif (r != -1) r = close(fd);[76;5Hif (r == -1) {[77;9Hstrerr_warn2(FATAL, "unable to write message: ", &strerr_sys);[78;9Hexitnicely(TEMP);[41;1H[40;1H[39;1H[38;1H[37;1H[36;1H[35;1H[34;1H[33;1H[32;1H[31;1H[30;1H[29;1H[28;1H[27;1H[1;70H[7mModified[27m[27;1Hq[27;1H [27;1H[79;1H[K[7mFile Name to write :                                                            [79;22H[27m[7mvdeliver.c[27m[80;15H[7mT[27m  To Files                                                     [K[81;2H[7mC[27m Cancel    [7mT[27m[7mA[27m[7mB[27m Complete                                                     [K[7m[79;32H[27m[79;1H[K[79;34H[7m[ Writing... ][27m[79;1H[K[79;31H[7m[ Wrote 199 lines ][27m[1;70H[7m        [27m[80;1H[K[81;1H[K[80;1H[7m^[27m[7mG[27m Get Help  [7m^[27m[7mO[27m WriteOut  [7m^[27m[7mR[27m Read File [7m^[27m[7mY[27m Prev Pg   [7m^[27m[7mK[27m Cut Text  [7m^[27m[7mC[27m Cur Pos   [K[81;1H[7m^[27m[7mX[27m Exit      [7m^[27m[7mJ[27m Justify   [7m^[27m[7mW[27m Where is  [7m^[27m[7mV[27m Next Pg   [7m^[27m[7mU[27m UnCut Text[7m^[27m[7mT[27m To Spell  [K[27;1H[1;70H[7mModified[27m[27;1Hwhich[27;7Hex        time = now();[27;9Hport[27;12H [27;12H[27;11H [27;11H[27;10H [27;10H[27;9H [27;9H[27;8H time = now();[K[27;8H[27;7H [27;7H[27;6H[27;5H [27;5H[27;4H [27;4H[27;3H [27;3H[27;2H [27;2H[27;1H [27;1H[79;1H[K[7mFile Name to write :                                                            [79;22H[27m[7mvdeliver.c[27m[80;15H[7mT[27m  To Files                                                     [K[81;2H[7mC[27m Cancel    [7mT[27m[7mA[27m[7mB[27m Complete                                                     [K[7m[79;32H[27m[79;1H[K[79;34H[7m[ Writing... ][27m[79;1H[K[79;31H[7m[ Wrote 199 lines ][27m[1;70H[7m        [27m[80;1H[K[81;1H[K[80;1H[7m^[27m[7mG[27m Get Help  [7m^[27m[7mO[27m WriteOut  [7m^[27m[7mR[27m Read File [7m^[27m[7mY[27m Prev Pg   [7m^[27m[7mK[27m Cut Text  [7m^[27m[7mC[27m Cur Pos   [K[81;1H[7m^[27m[7mX[27m Exit      [7m^[27m[7mJ[27m Justify   [7m^[27m[7mW[27m Where is  [7m^[27m[7mV[27m Next Pg   [7m^[27m[7mU[27m UnCut Text[7m^[27m[7mT[27m To Spell  [K[27;1H[80;1H[K[81;1H[K[?1047l[?1048l]0;dan@sirius.msl.net: /home/staff/dan/maildirdeliver-0.50[dan@sirius maildirdeliver-0.50]$ exit
+
+Script done on Tue Mar 12 15:05:20 2002

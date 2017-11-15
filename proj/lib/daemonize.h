@@ -1,0 +1,11 @@
+void dCleanUp(int);
+void dXallocFatal(char *);
+void dGetUidGid(void);
+void dInitialize(const char *, const char *, const char *, int);
+void dDaemonize(void);
+int dGetLogStatus(void);
+char *dGetProgramName(void);
+char *dGetPidPath(void);
+void dSetPidPath(const char *);
+char *dGetPidFile(void);
+char *dGetUser(void);

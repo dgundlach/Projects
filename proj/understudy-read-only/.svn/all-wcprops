@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 22
+/svn/!svn/ver/56/trunk
+END
+COPYING.LESSER
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/4/trunk/COPYING.LESSER
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/2/trunk/Info.plist
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/4/trunk/COPYING
+END
+UnderstudyAppliance.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/4/trunk/UnderstudyAppliance.h
+END
+understudy_Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/2/trunk/understudy_Prefix.pch
+END
+UnderstudyAppliance.m
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/4/trunk/UnderstudyAppliance.m
+END

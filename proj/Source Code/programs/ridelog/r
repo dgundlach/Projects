@@ -1,0 +1,74 @@
+--
+-- PostgreSQL database dump
+--
+
+SET client_encoding = 'SQL_ASCII';
+SET check_function_bodies = false;
+
+SET SESSION AUTHORIZATION 'postgres';
+
+--
+-- TOC entry 4 (OID 2200)
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+SET SESSION AUTHORIZATION 'dan';
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 5 (OID 17278)
+-- Name: ridelog; Type: TABLE; Schema: public; Owner: dan
+--
+
+CREATE TABLE ridelog (
+    odometer double precision,
+    ridedate date DEFAULT ('now'::text)::date,
+    comments text DEFAULT 'Rode solo.'::text
+);
+
+
+--
+-- Data for TOC entry 6 (OID 17278)
+-- Name: ridelog; Type: TABLE DATA; Schema: public; Owner: dan
+--
+
+COPY ridelog (odometer, ridedate, comments) FROM stdin;
+5278.1	2004-12-31	Starting mileage.
+5298.2	2005-02-05	Rode solo.
+5333.6	2005-02-12	Rode solo.
+5368.4	2005-02-14	Rode solo.
+5403.8	2005-02-15	Rode solo.
+5444.3	2005-02-16	Rode with Wayne.
+5469.6	2005-02-26	Rode solo.
+5504.6	2005-03-03	Rode solo.
+5540.9	2005-03-04	Rode solo.
+5580.7	2005-03-12	Rode solo.
+5611.2	2005-03-16	Rode solo.
+5652.5	2005-03-20	Rode solo.
+5693.1	2005-03-21	Rode solo.
+5735.4	2005-03-28	Rode solo.
+5795.9	2005-03-29	Rode with Ray.
+5840.1	2005-03-31	Rode solo.
+5886.0	2005-04-03	Rode solo.
+5930.3	2005-04-04	Rode solo.
+5971.9	2005-04-05	Rode solo.
+6024.5	2005-04-08	Rode solo.
+6066.2	2005-04-09	Rode solo.
+\.
+
+
+SET SESSION AUTHORIZATION 'postgres';
+
+--
+-- TOC entry 3 (OID 2200)
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'Standard public schema';
+
+

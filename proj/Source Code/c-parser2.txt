@@ -1,0 +1,49 @@
+From Markus.Elfring@web.de Sun Mar 13 11:01:18 2005
+From: "Markus Elfring" <Markus.Elfring@web.de>
+Newsgroups: comp.unix.programmer,microsoft.public.vc.language
+Subject: Re: Looking for code that can parse C-language declarations to create special data files
+Date: Sun, 13 Mar 2005 18:01:18 +0100
+Lines: 32
+Message-ID: <39jc0hF629hc7U1@individual.net>
+References: <jJcMd.7188$xR1.2439@bgtnsc04-news.ops.worldnet.att.net>
+X-Trace: individual.net R7qZ1YhqEcj1go2jbhFb/AM7nXkpDuTY9cmBuSpOiDntMrbtsn
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2919.6600
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6600
+Path: newsfeed.slurp.net!newsfeed-0.progon.net!progon.net!newsfeed00.sul.t-online.de!newsfeed01.sul.t-online.de!t-online.de!fu-berlin.de!uni-berlin.de!individual.net!not-for-mail
+Xref: newsfeed.slurp.net comp.unix.programmer:25440 microsoft.public.vc.language:41333
+
+> ...  I need the source code for a program (or set of functions) that can
+> parse standard C-language declarations for various integer, floating point,
+> and character array data types and structures and unions that contain these
+> types of elements.
+
+Would you like to try the following software alternatives?
+Are the following links useful for your application?
+
+1.  "OpenC++ is a C++ frontend library (lexer+parser+DOM/MOP) and source-to-source
+translator ...."
+   http://opencxx.sourceforge.net/
+
+2.  "Synopsis is a general source code documentation tool ...."
+   http://synopsis.fresco.org/
+
+3.  Keystone: A parser and front-end for ISO C++
+   http://keystone.sourceforge.net/research.shtml
+
+4. "Meta-Compilation for C++ transformation and filtering of a superset to the target
+language" by Edward D. Willink
+   http://www.computing.surrey.ac.uk/research/dsrg/fog/
+
+5. "Parsing C++" by Andrew Birkett
+   http://www.nobugs.org/developer/parsingcpp/
+
+6. compiler tool "Simplified Wrapper and Interface Generator"
+   http://www.swig.org/
+
+Regards,
+Markus
+
+
+

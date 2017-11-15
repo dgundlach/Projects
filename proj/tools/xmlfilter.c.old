@@ -1,0 +1,191 @@
+#define _GNU_SOURCE
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <getopt.h>
+#include <libgen.h>
+
+int process_it(FILE *f, int pre, int ts) {
+
+	char *inbuf = NULL;
+	char *outbuf = NULL;
+	char *ip;
+	char *ie;
+	char *op;
+	char *oe;
+	char *printend;
+	ssize_t len;
+	size_t buflen = 0;
+	size_t outbuflen = 4096;
+	char c, lastc;
+	int tc;
+	int count, i;
+
+	outbuf = malloc(outbuflen);
+	oe = outbuf + outbuflen;
+	if (pre) {
+		printf("<pre>\n");
+	}
+	while ((len = getline(&inbuf, &buflen, f)) != -1) {
+		ip = inbuf;
+		ie = inbuf + len;
+		op = outbuf;
+		printend = op;
+		lastc = ' ';
+		tc = 0;
+		while (ip < ie) {
+			c = *ip++;
+			if ((c == '\0') || (c == '\v')) c = ' ';
+			if ((oe - op) < 64) {
+				oe = op - (long)outbuf;
+				printend = printend - (long)outbuf;
+				outbuflen += 4096;
+				outbuf = realloc(outbuf, outbuflen);
+				op = outbuf + (long)oe;
+				oe = outbuf + (long)outbuflen;
+				printend = outbuf + (long)printend;
+			}
+			switch(c) {
+				case '&':
+					*op++ = '&';
+					*op++ = 'a';
+					*op++ = 'm';
+					*op++ = 'p';
+					*op++ = ';';
+					printend = op;
+					break;
+				case '<':
+					*op++ = '&';
+					*op++ = 'l';
+					*op++ = 't';
+					*op++ = ';';
+					printend = op;
+					break;
+				case '>':
+					*op++ = '&';
+					*op++ = 'g';
+					*op++ = 't';
+					*op++ = ';';
+					printend = op;
+					break;
+				case '"':
+					*op++ = '&';
+					*op++ = 'q';
+					*op++ = 'u';
+					*op++ = 'o';
+					*op++ = 't';
+					*op++ = ';';
+					printend = op;
+					break;
+				case ' ':
+				case '\t':
+					count = 0;
+					if (!pre) {
+						if (c == ' ') {
+							if ((lastc == ' ') || (lastc == '\t')) {
+								count = 1;
+							}
+						} else {
+							count = ts - tc;
+						}
+					}
+					if (count) {
+						for (i=0; i<count; i++) {
+							*op++ = '&';
+							*op++ = 'n';
+							*op++ = 'b';
+							*op++ = 's';
+							*op++ = 'p';
+							*op++ = ';';
+							tc++;
+						}
+						tc--;
+					} else {
+						if ((c == '\t') && (ts != 8)) {
+							count = ts - tc;
+							for (i=0; i<count; i++) {
+								*op++ = ' ';
+								tc++;
+							}
+							tc--;
+						} else {
+							*op++ = c;
+						}
+					}
+					break;
+				case '\n':
+				case '\r':
+					break;
+				default:
+					*op++ = c;
+					printend = op;
+			}
+			lastc = c;
+			if (++tc == ts) {
+				tc = 0;
+			}
+		}
+		if (printend > outbuf) {
+			*printend++ = '\n';
+			*printend++ = '\0';
+			printf("%s", outbuf);
+		} else {
+			printf("\n");
+		}
+	}
+	if (pre) {
+		printf("</pre>\n");
+	}
+}
+
+void usage(char **argv) {
+
+	printf("\nUsage: %s [-p] [-t <tabsize>] [-h|?] [file]\n"
+		   "\t-p          : Output data between <pre> and </pre>\n"
+		   "\t-t <tabsize>: Set the tab stops to <tabsize>\n"
+		   "\t-h,-?       : This text\n\n", basename(argv[0]));
+	exit(-1);
+}
+
+int main(int argc, char **argv) {
+
+	FILE *f = stdin;
+	int pre = 0;
+	int tabfill = 8;
+	int c;
+
+	while (1) {
+		if ((c = getopt(argc, argv, "pt:h?")) == -1) break;
+
+		switch(c) {
+			case 't':
+				tabfill = strtol(optarg, NULL, 10);
+				if (!tabfill) {
+					usage(argv);
+				}
+				break;
+			case 'p':
+				pre = 1;
+				break;
+			case '?':
+			case 'h':
+			default:
+				usage(argv);
+		}
+	}
+	if (optind != argc) {
+		if (!(f = fopen(argv[optind++], "r"))) {
+			printf("%s: file not found.\n", argv[optind]);
+			exit(-1);
+		}
+	}
+	if (optind != argc) {
+		usage(argv);
+	}
+	process_it(f, pre, tabfill);
+	fclose(f);
+}

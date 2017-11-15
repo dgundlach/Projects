@@ -1,0 +1,205 @@
+--
+-- PostgreSQL database dump
+--
+
+SET client_encoding = 'SQL_ASCII';
+SET check_function_bodies = false;
+
+SET SESSION AUTHORIZATION 'postgres';
+
+--
+-- TOC entry 4 (OID 2200)
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+SET SESSION AUTHORIZATION 'apache';
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 5 (OID 17143)
+-- Name: rl_dan; Type: TABLE; Schema: public; Owner: apache
+--
+
+CREATE TABLE rl_dan (
+    odometer numeric(7,1),
+    ridedate date DEFAULT ('now'::text)::date,
+    comments text DEFAULT 'Rode solo.'::text
+);
+
+
+--
+-- TOC entry 6 (OID 17143)
+-- Name: rl_dan; Type: ACL; Schema: public; Owner: apache
+--
+
+REVOKE ALL ON TABLE rl_dan FROM PUBLIC;
+GRANT ALL ON TABLE rl_dan TO dan;
+
+
+SET SESSION AUTHORIZATION 'apache';
+
+--
+-- TOC entry 7 (OID 17189)
+-- Name: ridelog_users; Type: TABLE; Schema: public; Owner: apache
+--
+
+CREATE TABLE ridelog_users (
+    username text,
+    "password" text,
+    defaultcomment text,
+    yearbg character(6),
+    monbg character(6),
+    weekbg character(6),
+    milebg character(6),
+    yrtest numeric(7,2),
+    miletest numeric(7,2),
+    battery numeric(7,1)
+);
+
+
+--
+-- TOC entry 8 (OID 33589)
+-- Name: rl_greg; Type: TABLE; Schema: public; Owner: apache
+--
+
+CREATE TABLE rl_greg (
+    odometer numeric(7,1),
+    ridedate date DEFAULT ('now'::text)::date,
+    comments text
+);
+
+
+--
+-- Data for TOC entry 9 (OID 17143)
+-- Name: rl_dan; Type: TABLE DATA; Schema: public; Owner: apache
+--
+
+COPY rl_dan (odometer, ridedate, comments) FROM stdin;
+5251.0	2004-12-31	Starting mileage.
+5271.1	2005-02-05	Rode solo.
+5306.5	2005-02-12	Rode solo.
+5341.3	2005-02-14	Rode solo.
+5376.7	2005-02-15	Rode solo.
+5417.2	2005-02-16	Rode with Wayne.
+5442.5	2005-02-26	Rode solo.
+5477.5	2005-03-03	Rode solo.
+5513.8	2005-03-04	Rode solo.
+5553.6	2005-03-12	Rode solo.
+5584.1	2005-03-16	Rode solo.
+5625.4	2005-03-20	Rode solo.
+5666.0	2005-03-21	Rode solo.
+5708.3	2005-03-28	Rode solo.
+5768.8	2005-03-29	Rode with Ray.
+5813.0	2005-03-31	Rode solo.
+5859.0	2005-04-03	Rode solo.
+5903.2	2005-04-04	Rode solo.
+5944.8	2005-04-05	Rode solo.
+5997.4	2005-04-08	Rode solo.
+6039.1	2005-04-09	Rode solo.
+6081.7	2005-04-10	Rode solo.
+6107.7	2005-04-12	Rode with Godzilla group.
+6114.2	2005-04-22	Rode solo.  Pere Marquette.
+6155.6	2005-05-04	Rode solo.
+6196.7	2005-05-07	Rode solo.
+6238.3	2005-05-09	Rode solo.
+6282.9	2005-05-10	Rode with Godzilla group.
+6469.4	2005-05-15	Rode solo.
+6499.1	2005-05-17	Rode with Godzilla group.
+6588.3	2005-05-22	Rode solo.
+6618.2	2005-05-24	Rode with Godzilla group.
+6702.5	2005-05-27	Rode solo.
+6743.5	2005-05-28	Rode solo.
+6787.8	2005-05-29	Rode solo. Whiteside 20x.
+6660.3	2005-05-26	Rode solo. Whiteside 10x.
+6546.5	2005-05-21	Rode solo. Whiteside 15x.
+6428.2	2005-05-14	Rode solo. Whiteside 15x.
+6345.6	2005-05-12	Rode solo. Whiteside 10x.
+6820.1	2005-05-31	Rode with Godzilla group.
+6863.7	2005-06-01	Rode solo.
+6917.9	2005-06-03	Rode solo.
+6969.5	2005-06-04	Rode solo.
+7042.8	2005-06-06	Rode solo.
+7073.1	2005-06-07	Rode with Godzilla group.
+7144.2	2005-06-09	Rode solo.
+7187.6	2005-06-11	Rode solo.
+7234.1	2005-06-12	Rode with Wayne & Nick - Babler.
+7367.0	2005-06-16	Rode solo.
+7264.4	2005-06-14	Rode with Godzilla group.
+7380.4	2005-06-18	Rode solo.  Hills at Sherwood.
+7461.4	2005-06-19	Rode with Wayne/Solo.
+7525.8	2005-06-22	Rode solo.
+7587.7	2005-06-23	Rode solo.
+7652.8	2005-06-25	Rode solo.
+7717.7	2005-06-26	Rode with Wayne.
+7782.1	2005-06-28	Rode solo.
+7846.1	2005-06-29	Rode solo.
+7912.0	2005-06-30	Rode solo.
+8020.4	2005-07-02	Rode with Jen, Bob, and Richard.
+8085.3	2005-07-03	Rode solo.
+8114.9	2005-07-05	Rode with Godzilla group.
+8189.3	2005-07-06	Rode with Richard/Solo
+8233.1	2005-07-08	Rode solo.
+8334.5	2005-07-10	Rode with Richard and Jimmy.
+8435.8	2005-07-11	Rode solo.
+8477.2	2005-07-13	Rode solo.
+8518.7	2005-07-15	Rode solo.
+8620.0	2005-07-16	Rode with Jen, Bob, Richard, Al, and Jan.
+8661.2	2005-07-17	Rode solo.
+8690.5	2005-07-19	Rode with Godzilla group.
+8731.7	2005-07-20	Rode solo.
+8766.6	2005-07-21	Rode with CVS group.
+8837.2	2005-07-23	Rode with Bob and Keith.
+8881.2	2005-07-24	Rode solo.
+8904.9	2005-07-26	Rode with Godzilla group.
+8969.4	2005-07-27	Rode solo.
+9002.1	2005-07-28	Rode with CVS group.
+9097.6	2005-07-30	Rode with Jen, Bob, Ray, Keith, Jeff, and Gary.
+9164.0	2005-07-31	Rode with CVS group.
+9193.7	2005-08-02	Rode with Godzilla group.
+9227.2	2005-08-04	Rode with CVS group.
+9291.6	2005-08-06	Rode with Jen, Bob, Richard, Al, and Jan.
+9341.8	2005-08-07	Rode solo.
+9369.5	2005-08-09	Rode with Godzilla group.
+9403.4	2005-08-11	Rode with CVS group.
+9482.7	2005-08-13	Rode with Jen, Bob, Al, and Jan.
+9512.0	2005-08-16	Rode with Godzilla group.
+9575.0	2005-08-17	Rode solo.
+9610.0	2006-01-25	Rode solo.
+\.
+
+
+--
+-- Data for TOC entry 10 (OID 17189)
+-- Name: ridelog_users; Type: TABLE DATA; Schema: public; Owner: apache
+--
+
+COPY ridelog_users (username, "password", defaultcomment, yearbg, monbg, weekbg, milebg, yrtest, miletest, battery) FROM stdin;
+greg	$1$CcFmCmb1$zQ31evqP2Gchs5IACS/Ms.	Rode solo.	cc0000	00cccc	00cc00	cc00cc	500.00	100.00	0.0
+dan	$1$16O0UcrE$sD2PuQTQFAKr.fJY.C0vi/	Rode solo.	cc0000	00cccc	00cc00	cc00cc	500.00	100.00	0.0
+\.
+
+
+--
+-- Data for TOC entry 11 (OID 33589)
+-- Name: rl_greg; Type: TABLE DATA; Schema: public; Owner: apache
+--
+
+COPY rl_greg (odometer, ridedate, comments) FROM stdin;
+\.
+
+
+SET SESSION AUTHORIZATION 'postgres';
+
+--
+-- TOC entry 3 (OID 2200)
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'Standard public schema';
+
+

@@ -1,0 +1,20 @@
+#!/bin/sh
+echo "Image server 0.01 -" `date`
+read FILENAME
+F=`basename "$FILENAME"`
+RANDOM=`date '+%s'`
+if [ "$F" = "$FILENAME" ] ; then
+    PORT=0
+    H=`hostname`
+    while [ $PORT -eq 0 ] ; do
+        C=$RANDOM
+        if [ $C -ge 1024 ] ; then
+            E=`nc -z "$H" "$C"`
+            if [ -z "$E" ] ; then
+                PORT=$C
+            fi
+        fi
+    done
+    echo "PORT $PORT"
+    nc -l $PORT > /drv/2-5/Files/filesystems/"$FILENAME" &
+fi

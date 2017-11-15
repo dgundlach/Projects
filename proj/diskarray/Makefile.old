@@ -1,0 +1,54 @@
+INCLUDES=`pkg-config glib-2.0 --cflags`
+LIBS=`pkg-config glib-2.0 --libs`
+COMPILE=gcc ${INCLUDES}
+LINK=gcc ${LIBS}
+
+all: array_mon splittest x
+
+array_mon: array_mon.o split.o daemonize.o FastBitCount.o scsi.o readtextline.o
+	${LINK} readtextline.o split.o FastBitCount.o scsi.o daemonize.o array_mon.o -o array_mon
+
+splittest: splittest.o split.o readtextline.o
+	${LINK} splittest.o split.o readtextline.o -o splittest
+
+x: x.o split.o FastBitCount.o scsi.o readtextline.o
+	${LINK} -o x x.o split.o FastBitCount.o scsi.o readtextline.o
+
+x.o: x.c
+	${COMPILE} -o x.o -c x.c
+
+array_mon.o: array_mon.c
+	${COMPILE} -o array_mon.o -c array_mon.c
+
+FastBitCount.o: FastBitCount.c
+	${COMPILE} -o FastBitCount.o -c FastBitCount.c
+
+daemonize.o: daemonize.c
+	${COMPILE} -o daemonize.o -c daemonize.c
+
+hexdump.o: hexdump.c
+	${COMPILE} -o hexdump.o -c hexdump.c
+
+parseini.o: parseini.c
+	${COMPILE} -o parseini.o -c parseini.c
+
+processfile.o: processfile.c
+	${COMPILE} -o processfile.o -c processfile.c
+
+readtextline.o: readtextline.c
+	${COMPILE} -o readtextline.o -c readtextline.c
+
+scsi.o: scsi.c
+	${COMPILE} -o scsi.o -c scsi.c
+
+split.o: split.c
+	${COMPILE} -o split.o -c split.c
+
+splittest.o: splittest.c
+	${COMPILE} -o splittest.o -c splittest.c
+
+tstr.o: tstr.c
+	${COMPILE} -o tstr.o -c tstr.c
+
+clean:
+	rm -f *.o array_mon

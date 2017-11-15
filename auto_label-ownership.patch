@@ -1,0 +1,341 @@
+diff --git a/altab b/altab
+index 26c1c44..c56efc3 100644
+--- a/altab
++++ b/altab
+@@ -1,19 +1,28 @@
+ # Filesystem type defaults.  The "*" entry is a catchall.
+ 
+-#             fs type    mount type           options
++#             fs type        mount type           options
+ 
+-fsopts          ntfs        ufsd    noatime,fmask=0133,uid=$UID,gid=$GID
+-fsopts          vfat        vfat    noatime,fmask=0133,uid=$UID,gid=$GID
+-fsopts          ext2        ext4    noatime,nodiratime
+-fsopts          ext3        ext4    noatime,nodiratime
+-fsopts          ext4        ext4    noatime,nodiratime
+-fsopts          *           *       noatime,nodiratime
++fsopts          hfsplus         ufsd    noatime,fmask=0133,uid=$UID,gid=$GID
++fsopts          ntfs            ufsd    noatime,fmask=0133,uid=$UID,gid=$GID
++fsopts          vfat            vfat    noatime,fmask=0133,uid=$UID,gid=$GID
++fsopts          ext2            ext4    noatime,nodiratime
++fsopts          ext3            ext4    noatime,nodiratime
++fsopts          ext4            ext4    noatime,nodiratime
++fsopts          *               *       noatime,nodiratime
++
++# Directory ownership.
++
++#                    dir        owner   mode
++
++owner           /cygdrive       dan     0755
++owner			/private/dan    dan     0755
++owner           /private/sheri  sheri   0755
+ 
+ # Mount directories.  If a pair dir is defined, the main dir is mounted ro,
+ # and the pair dir is mounted rw.  An * disables pairing.
+ 
+-#    dir         pair dir  fstype             options
++#    dir        pair dir       fstype          options
+ 
+-#/multimedia     /cygdrive   auto    ro,noatime,nodiratime
+-/multimedia     /cygdrive   auto    defaults
+-/drv            *           auto    defaults
++#/multimedia     /cygdrive       auto    ro,noatime,nodiratime
++/multimedia     /cygdrive       auto    defaults
++/drv            *               auto    defaults
+diff --git a/auto_label.c b/auto_label.c
+index 6e70ba2..489e9e3 100644
+--- a/auto_label.c
++++ b/auto_label.c
+@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
+ 	const char *fsType;
+ 	char *mountFSType;
+ 	fs_opts *fsOpts = NULL;
++	owner_opts *ownerOpts = NULL;
+ 	mount_opts *mountOpts = NULL;
+ 	fs_opts *fO = NULL;
+ 	mount_opts *mO = NULL;
+@@ -33,7 +34,7 @@ int main(int argc, char **argv) {
+ 	if (argc != 2) exit(1);
+ 	label = argv[1];
+ 
+-	configure(&fsOpts, &mountOpts);
++	configure(&fsOpts, &ownerOpts, &mountOpts);
+ 
+ 	/*
+ 	 * Get the corresponding device for the label.
+diff --git a/configure.c b/configure.c
+index 7de7341..9389698 100644
+--- a/configure.c
++++ b/configure.c
+@@ -8,6 +8,8 @@
+ #include <string.h>
+ #include <mntent.h>
+ #include <blkid/blkid.h>
++#include <pwd.h>
++#include <grp.h>
+ #include "configure.h"
+ 
+ char *fixOptions(char *options) {
+@@ -91,6 +93,74 @@ mount_opts *addMountDef(mount_opts *mountOpts, char *dir, char *peerDir, char *f
+ 	return mountOpts;
+ }
+ 
++int setOwnerOpts(owner_opts *ownerOpts, char *dir, char *owner, char *group, char *mode) {
++
++	struct passwd *pwd;
++	struct group *grp;
++
++	if (ownerOpts == NULL) {
++		return 1;
++	}
++	if ((pwd = getpwnam(owner))) {
++		ownerOpts->uid = pwd->pw_uid;
++		ownerOpts->gid = pwd->pw_gid;
++		if (group) {
++			if ((grp = getgrnam(group))) {
++				ownerOpts->gid = grp->gr_gid;
++			} else {
++				return 3;
++			}
++		}
++	} else {
++		return 2;
++	}
++	ownerOpts->mode = 0755;
++	if (mode & (*mode != '\0')) {
++		ownerOpts->mode = (mode_t) strtol(mode, NULL, 8);
++	}
++	ownerOpts->dir = strdup(dir);
++	return 0;
++}
++
++owner_opts *addOwnerOpts(owner_opts *ownerOpts, char *dir, char *owner, char *group, char *mode) {
++
++	owner_opts *newOpts;
++
++	/*
++	 * Create the list if it doesn't exist or prepend it if the entry key is list than
++	 * the current key.
++	 */
++
++	if ((ownerOpts == NULL) || (strcmp(dir, ownerOpts->dir) < 0)) {
++		newOpts = malloc(sizeof(struct owner_opts));
++		if (!setOwnerOpts(newOpts, dir, owner, group, mode)) {
++			newOpts->next = ownerOpts;
++			return newOpts;
++		} else {
++			free(newOpts);
++			return NULL;
++		}
++
++    /*
++     * The new entry key is greater than the current one, so add it after this one.
++     */
++
++    } else if (strcmp(dir, ownerOpts->dir) > 0) {
++        ownerOpts->next = addOwnerOpts(ownerOpts->next, dir, owner, group, mode);
++
++    /*
++     * The keys are equal, so just amend the contents.
++     */
++
++    } else {
++		free(ownerOpts->dir);
++		ownerOpts->dir = NULL;
++		setOwnerOpts(ownerOpts, dir, owner, group, mode);
++    }
++    return ownerOpts;
++
++}
++
+ fs_opts *addFSDefault(fs_opts *fsOpts, char *fsType, char *mountType, char *options) {
+ 
+ 	fs_opts *newOpts;
+@@ -128,10 +198,12 @@ fs_opts *addFSDefault(fs_opts *fsOpts, char *fsType, char *mountType, char *opti
+ 	return fsOpts;
+ }
+ 
+-int configure(fs_opts **fsOpts, mount_opts **mountOpts) {
++int configure(fs_opts **fsOpts, owner_opts **ownerOpts, mount_opts **mountOpts) {
+ 
+ 	FILE *conf;
+ 	struct mntent *ent;
++	char *owner;
++	char *group;
+ 
+ 	/*
+ 	 * Set up some default filesystem type entries.  These can be overridden.
+@@ -140,6 +212,7 @@ int configure(fs_opts **fsOpts, mount_opts **mountOpts) {
+ 	*fsOpts = addFSDefault(*fsOpts, "ext2", "ext4", "defaults");
+ 	*fsOpts = addFSDefault(*fsOpts, "ext3", "ext4", "defaults");
+ 	*fsOpts = addFSDefault(*fsOpts, "ext4", "ext4", "defaults");
++	*fsopts = addFSDefault(*fsOpts, "hfsplus", "ufsd", "defaults");
+ 	*fsOpts = addFSDefault(*fsOpts, "ntfs", "ufsd", "defaults");
+ 	*fsOpts = addFSDefault(*fsOpts, "vfat", "vfat", "defaults");
+ 
+@@ -151,6 +224,13 @@ int configure(fs_opts **fsOpts, mount_opts **mountOpts) {
+ 	while ((ent = getmntent(conf))) {
+ 		if (!strcmp(ent->mnt_fsname, FS_OPTS)) {
+ 			*fsOpts = addFSDefault(*fsOpts, ent->mnt_dir, ent->mnt_type, ent->mnt_opts);
++		} else if (!strcmp(ent->mnt_fsname, OWNER_OPTS)) {
++			owner = strdup(ent->mnt_type);
++			if ((group = strchr(owner, ':'))) {
++				*group++ = '\0';
++			}
++			free(owner);
++			*ownerOpts = addOwnerOpts(*ownerOpts, ent->mnt_dir, owner, group, ent->mnt_opts);
+ 		} else {
+ 			*mountOpts = addMountDef(*mountOpts, ent->mnt_fsname, ent->mnt_dir, ent->mnt_type, ent->mnt_opts);
+ 		}
+diff --git a/configure.h b/configure.h
+index 291c20c..78f6ec3 100644
+--- a/configure.h
++++ b/configure.h
+@@ -1,6 +1,7 @@
+ #define DEV_DISK_BY_LABEL   "/dev/disk/by-label/"
+ #define CONF_FILE           "/etc/altab"
+ #define FS_OPTS             "fsopts"
++#define OWNER_OPTS          "owner"
+ #define MOUNT_DEFAULTS      "defaults"
+ 
+ typedef struct fs_opts {
+@@ -10,6 +11,15 @@ typedef struct fs_opts {
+ 	void *next;
+ } fs_opts;
+ 
++typedef struct owner_opts {
++	char *dir;
++	uid_t uid;
++	gid_t gid;
++	mode_t mode;
++	int wd;
++	void *next;
++} owner_opts;
++
+ typedef struct mount_opts {
+ 	char *dir;
+ 	char *peerDir;
+@@ -22,4 +32,5 @@ typedef struct mount_opts {
+ char *fixOptions(char *options);
+ mount_opts *addMountDef(mount_opts *mountOpts, char *dir, char *peerDir, char *fsType, char *options);
+ fs_opts *addFSDefault(fs_opts *fsOpts, char *fsType, char *mountType, char *options);
+-int configure(fs_opts **fsOpts, mount_opts **mountOpts);
++owner_opts *addOwnerOpts(owner_opts *ownerOpts, char *dir, char *owner, char *group, char *mode);
++int configure(fs_opts **fsOpts, owner_opts **ownerOpts, mount_opts **mountOpts);
+diff --git a/remountd.c b/remountd.c
+index 630462c..8840f7d 100644
+--- a/remountd.c
++++ b/remountd.c
+@@ -8,6 +8,7 @@
+ #include <syslog.h>
+ #include <libgen.h>
+ #include <string.h>
++#include <sys/stat.h>
+ #include "daemonize.h"
+ 
+ #include "configure.h"
+@@ -21,16 +22,21 @@ int main(int argc, char *argv[]) {
+ 	char buf[BUF_LEN] __attribute__ ((aligned(8)));
+ 	ssize_t numRead;
+ 	char *p;
++	char *path = NULL;
++	int len = 0;
++	int newlen;
+ 	struct inotify_event *event;
+ 	int rc;
+ 	int wc = 0;
+ 	fs_opts *fsOpts = NULL;
+ 	mount_opts *mountOpts = NULL;
+ 	mount_opts *mO = NULL;
++	owner_opts *ownerOpts = NULL;
++	owner_opts *oO = NULL;
+ 
+ 
+ 	daemonize(basename(argv[0]), "root", LOG_DAEMON, &daemonize_signal_handler);
+-	configure(&fsOpts, &mountOpts);
++	configure(&fsOpts, &ownerOpts, &mountOpts);
+ 
+ 	inotifyFd = inotify_init();
+ 	if (inotifyFd == -1) {
+@@ -44,7 +50,7 @@ int main(int argc, char *argv[]) {
+ 			wc++;
+ 			wd = inotify_add_watch(inotifyFd, mO->peerDir, IN_DELETE_SELF|IN_DELETE|IN_ISDIR);
+ 			if (wd == -1) {
+-				syslog(LOG_ERR, "Error adding inotify watch for /cygdrive.");
++				syslog(LOG_ERR, "Error adding inotify watch for %s.", mO->peerDir);
+ 				daemon_clean_up();
+ 			}
+ 			mO->wd = wd;
+@@ -52,6 +58,18 @@ int main(int argc, char *argv[]) {
+ 		mO = mO->next;
+ 	}
+ 
++	oO = ownerOpts;
++	while (oO) {
++		wc++;
++		wd = inotify_add_watch(inotifyFd, oO->dir, IN_CREATE|IN_ISDIR);
++		if (wd == -1) {
++			syslog(LOG_ERR, "Error adding inotify watch for %s.", oO->dir);
++			daemon_clean_up();
++		}
++		oO->wd = wd;
++		oO = oO->next;
++	}
++
+ 	for (;;) {
+ 		numRead = read(inotifyFd, buf, BUF_LEN);
+ 		if (numRead == 0) {
+@@ -68,22 +86,40 @@ int main(int argc, char *argv[]) {
+ 
+ 		for (p = buf; p < buf + numRead; ) {
+ 			event = (struct inotify_event *) p;
+-			mO = mountOpts;
+-			while (mO) {
+-				if (event->wd == mO->wd) {
+-					if (event->mask & IN_DELETE_SELF) {
+-						syslog(LOG_INFO, "%s removed by automount.", mO->peerDir);
+-						wc--;
+-						if (!wc) {
+-							syslog(LOG_INFO, "Last watch removed.  Exiting.");
+-							daemon_clean_up();
++			if (event->mask & IN_CREATE) {
++				oO = ownerOpts;
++				while (oO) {
++					if (event->wd == oO->wd) {
++						newlen = snprintf(path, len, "%s/%s", oO->dir, event->name);
++						if (newlen >= len) {
++							len = newlen;
++							path = realloc(path, len);
++							newlen = snprintf(path, len, "%s/%s", oO->dir, event->name);
++						}
++						chown(path, oO->uid, oO->gid);
++						chmod(path, oO->mode);
++						break;
++					}
++					oO = oO->next;
++				}
++			} else {
++				mO = mountOpts;
++				while (mO) {
++					if (event->wd == mO->wd) {
++						if (event->mask & IN_DELETE_SELF) {
++							syslog(LOG_INFO, "%s removed by automount.", mO->peerDir);
++							wc--;
++							if (!wc) {
++								syslog(LOG_INFO, "Last watch removed.  Exiting.");
++								daemon_clean_up();
++							}
++						} else {
++							rc = remountToggle(event->name, mO->dir);
+ 						}
+-					} else {
+-						rc = remountToggle(event->name, mO->dir);
++						break;
+ 					}
+-					break;
++					mO = mO->next;
+ 				}
+-				mO = mO->next;
+ 			}
+ 			p += sizeof(struct inotify_event) + event->len;
+ 		}

@@ -1,0 +1,17 @@
+#define D1 "    <tr>\n        <td>\n            %02i/%02i\n"
+#dafine D2 "        </td>\n        <td>\n            %i\n"
+#define D3 "        </td>\n        <td>\n            %.1f\n"
+#define D4 "        </td>\n        <td>\n            %.1f\n"
+#define D5 "        </td>\n        <td>\n            %.1f\n"
+#define D6 "        </td>\n        <td>\n            %.1f\n"
+#define D7 "        </td>\n        <td>\n            %.1f\n"
+#define D8 "        </td>\n        <td>\n            %s\n"
+#define D9 "        </td>\n    </tr>\n"
+
+
+
+
+#define DDATE "        <td>%02i/%02i</td>\n"
+#define DINT  "        <td>\%2i</td>\n"
+#define DDOUB "        <td>%.1f</td>\n"
+#define DSTR  "        <td>%s</td>\n"

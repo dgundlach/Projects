@@ -1,0 +1,139 @@
+create database billing;
+create sequence gid_seq minvalue 500 start 500;
+create sequence acctno_seq minvalue 500 start 500;
+create table billing (
+aba_number		varchar(15)		DEFAULT '',
+acctno			int			DEFAULT nextval('acctno_seq'),
+added_by		varchar(36)		DEFAULT '',
+address			varchar(36),
+apt			varchar(10)		DEFAULT '',
+balance			int			DEFAULT 0,
+billing_interval	int			DEFAULT 0,
+billing_start		date			DEFAULT '0001-01-01',
+cc_expire		date,
+cc			varchar(20)		DEFAULT '',
+checking_account	varchar(20)		DEFAULT '',
+city			varchar(36),
+comments		text			DEFAULT '',
+credit			numeric(8,2)		DEFAULT 0,
+credit_months		int			DEFAULT 0,
+credit_months2		int			DEFAULT 0,
+email			varchar(100)		NOT NULL,
+expire_interval		int			DEFAULT 1,
+extra_logins		text			DEFAULT '',
+first_name		varchar(36),
+gid			int			DEFAULT 100,
+home_phone		varchar(20)		DEFAULT '',
+i_type			char			DEFAULT 'E',
+last_name		varchar(36),
+locked			char			DEFAULT 'N',
+mail_aliases		text			DEFAULT '',
+mi			char			DEFAULT ' ',
+monthly_fee		numeric(8,2)		DEFAULT 15.00,
+password		varchar(36)		DEFAULT '!!',
+ppd_months		int			DEFAULT 0,
+ppd_months_o		int			DEFAULT 0,
+ppd_ppm			numeric(8,2)		DEFAULT 0,
+ppd_ppm_o		numeric(8,2)			DEFAULT 0,
+ppd_seq			int			DEFAULT 0,
+ppd_seq_o		int			DEFAULT -1,
+referrals		int			DEFAULT 0,
+referral_credits	int			DEFAULT 0,
+referred_by		int			DEFAULT -1,
+removed			char			DEFAULT 'N',
+reserve			numeric(8,2)		DEFAULT 0,
+return_date		date,
+setup_fee_paid		char			DEFAULT 'N',
+spouse			varchar(36)		DEFAULT '',
+start_date		date			DEFAULT NOW(),
+state			varchar(2),
+suspended		char			DEFAULT 'N',
+total_paid		numeric(8,2)		DEFAULT 0,
+t_seq			int			DEFAULT 0,
+work_phone		varchar(20)		DEFAULT '',
+zip_code		varchar(10)		DEFAULT '',
+primary key (acctno)
+);
+create index billing_start_idx on billing(billing_start);
+create index billing_interval_idx on billing(billing_interval);
+create index city_idx on billing(city);
+create unique index email_idx on billing(email);
+create index expire_interval_idx on billing(expire_interval);
+create index first_name_idx on billing(first_name);
+create index gid_idx on billing(gid);
+create index last_name_idx on billing(last_name);
+create index spouse_idx on billing(spouse);
+create index suspended_idx on billing(suspended);
+create table referrals (
+acctno			int,
+amt_paid		numeric(8,2),
+referer_acctno		int,
+primary key (acctno)
+);
+create table transactions (
+acctno			int,
+amount			numeric(8,2),
+comment			text,
+entered_by		varchar(32),
+months			int,
+r_seq              	int			DEFAULT -1,
+revoked			char			DEFAULT 'N',
+t_date			date,
+t_seq			int,
+type			int,
+primary key (acctno, t_seq)
+);
+create index t_date_idx on transactions(t_date);
+create index entered_by_idx on transactions(entered_by);
+create index reconciled_idx on transactions(r_seq);
+create table dotqmails (
+login			varchar(36),
+domain			varchar(64),
+extension		varchar(36),
+dotqmail		text,
+primary key (login, domain ,extension)
+);
+create table equivalents (
+domain			varchar(64),
+equivalent_domain	varchar(64),
+primary key (domain)
+);
+create table template_table (
+template_name  varchar(36),
+radius_attr    text,
+comment        text,
+primary key (template_name)
+);
+create table users (
+login			varchar(36),
+crypt			varchar(36)           DEFAULT '!!',
+passwd			varchar(36),
+passwd_opt		varchar(100)          DEFAULT NULL,
+start_date		date,
+expire_date		date,
+active			char                  DEFAULT 'Y',
+attr_template		varchar(36)           DEFAULT 'dynamicppp',
+domain			varchar(64),
+uid			int,
+gid			int,
+home			varchar(64),
+radius_attr		text,
+start_time		time                  DEFAULT '00:00:00',
+end_time		time                  DEFAULT '00:00:00',
+still_login		int                   DEFAULT 0,
+max_shared_login	int                   DEFAULT 99999,
+total_login		int                   DEFAULT 0,
+max_total_login		int                   DEFAULT 99999,
+buy_time		int,
+logindays		varchar(7)            DEFAULT '1234567',
+lastlogin		timestamp,
+use_dotqmail		char                  DEFAULT 'N',
+mail_active		char                  DEFAULT 'Y',
+hardquota		int                   DEFAULT 0,
+primary key (login, domain)
+);
+create index users_start_idx on users(start_date);
+create index users_expire_idx on users(expire_date);
+create index users_active_idx on users(active);
+create index users_uid_idx on users(uid);
+create index users_gid_idx on users(gid);

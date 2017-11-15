@@ -1,0 +1,63 @@
+#!/bin/sh
+
+TOPATH="/home/Photos"
+
+FROMPATH=$1
+
+if [ -z "$FROMPATH" -o ! -d "$FROMPATH" ] ; then
+    exit
+fi
+if [ ! -z "$2" ] ; then
+    TOPATH=$2
+    if [ ! -d "$TOPATH" ] ; then
+        exit
+    fi
+fi
+
+SAVEIFS=$IFS
+IFS=":"
+exiftool -d '%Y%m%d%H%M.%S' -p '$datetimeoriginal:$filename:$directory/$filename' -r "$FROMPATH" 2>/dev/null \
+        | sort | while read TOUCHDATE FILENAME FILEPATH ; do
+# Uncomment the following line to convert the file name to lower case.
+    FILENAME=`echo "$FILENAME" | tr A-Z a-z`
+    YEAR=${TOUCHDATE:0:4}
+    TARGETDIR=${YEAR}/${YEAR}-${TOUCHDATE:4:2}-${TOUCHDATE:6:2}
+    NPATH="$TOPATH"/"$TARGETDIR"
+# Create the target and timestamp dirs.
+    if [ ! -d "$NPATH" ] ; then
+        mkdir -m 0755 -p "$NPATH"/.ts
+    fi
+    CPATH="$NPATH"/"$FILENAME"
+    TSPATH="$NPATH"/.ts/"$FILENAME".txt
+    FOUND=n
+    I=1
+    while [ "$FOUND" = "n" ] ; do
+        if [ ! -e "$CPATH" ] ; then
+# We've found a new file.  Leave the loop so that we can copy it.
+            FOUND=y
+        else
+# If the timestamps don't match, it looks lke we have a different
+# file with the same name.  Rename the file.  The last name we test
+# won't have a timestamp, so supress the display of errors.
+            TIMESTAMP=`head -1 "$TSPATH" 2>/dev/null`
+            if [ "$TIMESTAMP" != "$TOUCHDATE" ] ; then
+                TNAME=`printf "dn%02d_%s" $I "$FILENAME"`
+                CPATH="$NPATH"/"$TNAME"
+                TSPATH="$NPATH"/.ts/"$TNAME".txt
+                let I=I+1
+            else
+# If the timestamps match, we're most likely just looking at the
+# same file.  Don't do anything with it.
+                CPATH=""
+                FOUND=y
+            fi
+        fi
+    done
+# Copy the file and set the timestamp.
+    if [ ! -z "$CPATH" ] ; then
+        cp -v "$FILEPATH" "$CPATH"
+        echo "$TOUCHDATE" > "$TSPATH"
+        touch -t $TOUCHDATE "$CPATH" "$TSPATH"
+        chmod 644 "$CPATH"
+    fi
+done

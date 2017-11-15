@@ -1,0 +1,7 @@
+F IT.;1                                 	it
+F REMOVEMA.;1                           	removemail
+F REMOVEMA.C;1                          	removemail.c
+F REMOVEMA.O;1                          	removemail.o
+F SOCKLIB.C;1                           	socklib.c
+F SOCKLIB.H;1                           	socklib.h
+F SOCKLIB.O;1                           	socklib.o

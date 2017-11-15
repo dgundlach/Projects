@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/svn/!svn/ver/56/trunk/Hulu
+END
+HuluAddDialog.m
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/48/trunk/Hulu/HuluAddDialog.m
+END
+HuluFeedDiscoverer.m
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/56/trunk/Hulu/HuluFeedDiscoverer.m
+END
+HuluAsset.h
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/56/trunk/Hulu/HuluAsset.h
+END
+HuluController.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/43/trunk/Hulu/HuluController.h
+END
+HuluFeed.h
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/56/trunk/Hulu/HuluFeed.h
+END
+HuluAsset.m
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/56/trunk/Hulu/HuluAsset.m
+END
+HuluAddDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/31/trunk/Hulu/HuluAddDialog.h
+END
+HuluController.m
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/50/trunk/Hulu/HuluController.m
+END
+HuluFeed.m
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/56/trunk/Hulu/HuluFeed.m
+END
+HuluFeedDiscoverer.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/56/trunk/Hulu/HuluFeedDiscoverer.h
+END

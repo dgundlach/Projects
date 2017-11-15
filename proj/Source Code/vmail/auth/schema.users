@@ -1,0 +1,173 @@
+--
+-- Selected TOC Entries:
+--
+\connect - dan
+--
+-- TOC Entry ID 2 (OID 18755)
+--
+-- Name: users_uid_seq Type: SEQUENCE Owner: newton
+--
+
+CREATE SEQUENCE "users_uid_seq" start 2220 increment 1 maxvalue 2147483647 minvalue 2220  cache 1 ;
+
+--
+-- TOC Entry ID 3 (OID 18774)
+--
+-- Name: users Type: TABLE Owner: newton
+--
+
+CREATE TABLE "users" (
+	"username" text,
+	"passwd" text,
+	"uid" integer,
+	"gid" integer,
+	"gecos" text,
+	"homedir" text,
+	"shell" text,
+	"domain" text,
+	"maildest" text,
+	"lastchange" integer,
+	"minchange" integer DEFAULT -1,
+	"maxchange" integer DEFAULT -1,
+	"warn" integer DEFAULT -1,
+	"inact" integer DEFAULT -1,
+	"expire" integer DEFAULT -1,
+	"flag" integer DEFAULT -1
+);
+
+--
+-- TOC Entry ID 4 (OID 18774)
+--
+-- Name: users Type: ACL Owner: 
+--
+
+REVOKE ALL on "users" from PUBLIC;
+GRANT ALL on "users" to "newton";
+GRANT SELECT on "users" to "admin";
+
+--
+-- TOC Entry ID 5 (OID 18874)
+--
+-- Name: msl_net Type: VIEW Owner: newton
+--
+
+CREATE VIEW "msl_net" as SELECT users.username, users.passwd, users.maildest FROM users WHERE (users.domain = 'msl.net'::text);
+--
+-- TOC Entry ID 6 (OID 18874)
+--
+-- Name: msl_net Type: ACL Owner: 
+--
+
+REVOKE ALL on "msl_net" from PUBLIC;
+GRANT ALL on "msl_net" to "newton";
+GRANT SELECT on "msl_net" to "admin";
+
+--
+-- TOC Entry ID 7 (OID 18901)
+--
+-- Name: sherrillassoc_com Type: VIEW Owner: newton
+--
+
+CREATE VIEW "sherrillassoc_com" as SELECT users.username, users.passwd, users.maildest FROM users WHERE (users.domain = 'sherrillassoc.com'::text);
+--
+-- TOC Entry ID 8 (OID 18901)
+--
+-- Name: sherrillassoc_com Type: ACL Owner: 
+--
+
+REVOKE ALL on "sherrillassoc_com" from PUBLIC;
+GRANT ALL on "sherrillassoc_com" to "newton";
+GRANT SELECT on "sherrillassoc_com" to "admin";
+
+--
+-- TOC Entry ID 9 (OID 18928)
+--
+-- Name: shellcu_org Type: VIEW Owner: newton
+--
+
+CREATE VIEW "shellcu_org" as SELECT users.username, users.passwd, users.maildest FROM users WHERE (users.domain = 'shellcu.org'::text);
+--
+-- TOC Entry ID 10 (OID 18928)
+--
+-- Name: shellcu_org Type: ACL Owner: 
+--
+
+REVOKE ALL on "shellcu_org" from PUBLIC;
+GRANT ALL on "shellcu_org" to "newton";
+GRANT SELECT on "shellcu_org" to "admin";
+
+--
+-- TOC Entry ID 11 (OID 18955)
+--
+-- Name: spiff_net Type: VIEW Owner: newton
+--
+
+CREATE VIEW "spiff_net" as SELECT users.username, users.passwd, users.maildest FROM users WHERE (users.domain = 'msl.net'::text);
+--
+-- TOC Entry ID 12 (OID 18955)
+--
+-- Name: spiff_net Type: ACL Owner: 
+--
+
+REVOKE ALL on "spiff_net" from PUBLIC;
+GRANT ALL on "spiff_net" to "newton";
+GRANT SELECT on "spiff_net" to "admin";
+
+--
+-- TOC Entry ID 13 (OID 18982)
+--
+-- Name: calvin_spiff_net Type: VIEW Owner: newton
+--
+
+CREATE VIEW "calvin_spiff_net" as SELECT users.username, users.passwd, users.maildest FROM users WHERE (users.domain = 'msl.net'::text);
+--
+-- TOC Entry ID 14 (OID 18982)
+--
+-- Name: calvin_spiff_net Type: ACL Owner: 
+--
+
+REVOKE ALL on "calvin_spiff_net" from PUBLIC;
+GRANT ALL on "calvin_spiff_net" to "newton";
+GRANT SELECT on "calvin_spiff_net" to "admin";
+
+--
+-- TOC Entry ID 15 (OID 29732)
+--
+-- Name: staff Type: TABLE Owner: dan
+--
+
+CREATE TABLE "staff" (
+	"username" text,
+	"passwd" text,
+	"uid" integer,
+	"gid" integer,
+	"gecos" text,
+	"homedir" text,
+	"shell" text,
+	"domain" text,
+	"maildest" text,
+	"lastchange" integer,
+	"minchange" integer,
+	"maxchange" integer,
+	"warn" integer,
+	"inact" integer,
+	"expire" integer,
+	"flag" integer
+);
+
+--
+-- TOC Entry ID 16 (OID 18774)
+--
+-- Name: "users_username_index" Type: INDEX Owner: newton
+--
+
+CREATE  INDEX "users_username_index" on "users" using btree ( "username" "text_ops" );
+
+--
+-- TOC Entry ID 17 (OID 18774)
+--
+-- Name: "users_uid_index" Type: INDEX Owner: newton
+--
+
+CREATE  INDEX "users_uid_index" on "users" using btree ( "uid" "int4_ops" );
+

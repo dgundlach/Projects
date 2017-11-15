@@ -1,0 +1,21 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="7">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="744" startPos="191" endPos="199" selMode="0" lang="Makefile" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\Makefile" />
+            <File firstVisibleLine="154" xOffset="0" scrollWidth="776" startPos="3811" endPos="3811" selMode="0" lang="C" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\array_mon.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1032" startPos="710" endPos="710" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\array_mon.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="664" startPos="287" endPos="287" selMode="0" lang="C" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\daemonize.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="408" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\daemonize.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="832" startPos="85" endPos="85" selMode="0" lang="C" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\readtextline.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="456" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\readtextline.h" />
+            <File firstVisibleLine="479" xOffset="0" scrollWidth="1064" startPos="11616" endPos="11616" selMode="0" lang="C" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\scsi.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="768" startPos="174" endPos="174" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\scsi.h" />
+            <File firstVisibleLine="4" xOffset="0" scrollWidth="696" startPos="0" endPos="0" selMode="0" lang="C" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\split.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="368" startPos="160" endPos="160" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\split.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="216" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\FastBitCount.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="320" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\limits.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="776" startPos="229" endPos="229" selMode="0" lang="C++" encoding="-1" filename="\\CURLY-JOE\dan\proj\diskarray\paths.h" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

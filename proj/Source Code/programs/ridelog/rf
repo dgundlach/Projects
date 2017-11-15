@@ -1,0 +1,7 @@
+
+   
+" Ride Date  Odometer  Mileage                 Comments\n"
+"------------------------------------------------------------------------------\n"
+" %s  %6.0f    %4.0f   %s\n"
+"                       ----\n"
+"        Monthly Total  xxxx   Yearly Total  xxxxx\n\n"

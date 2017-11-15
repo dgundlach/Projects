@@ -1,0 +1,22 @@
+struct RingBuffer {
+    char *Buf;
+    char *TmpBuf;
+    unsigned int BufSize;
+    unsigned int ReadPtr;
+    unsigned int WritePtr;
+};
+
+
+/* RingBuffer.c */
+struct RingBuffer *CreateRingBuffer(unsigned int bufsize);
+unsigned int GetRingBufferReadSize(struct RingBuffer *rb);
+unsigned int GetRingBufferWriteSize(struct RingBuffer *rb);
+int RingBufferReadBinary(struct RingBuffer *rb, char *buffer, int bufsize);
+int RingBufferWriteBinary(struct RingBuffer *rb, char *buffer, int bufsize);
+int RingBufferPeekChar(struct RingBuffer *rb, unsigned int pos, char *ch);
+int RingBufferFindChar(struct RingBuffer *rb, char ch, int *pos);
+int RingBufferGetLine(struct RingBuffer *rb, char **string);
+int RingBufferReadLine(int fd, struct RingBuffer *rb, char **string);
+int RingBufferWriteLine(int fd, struct RingBuffer *rb);
+int RingBufferRecvLine(int s, struct RingBuffer *rb, char **string, int flags);
+int RingBufferSendLine(int s, struct RingBuffer *rb, int flags);

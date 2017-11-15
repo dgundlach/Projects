@@ -1,0 +1,129 @@
+#!/bin/sh
+
+# This routine moves the back up to the proper directory and sets
+# the current link to it.  It does this for both local and remote
+# back ups.
+
+set_current() {
+	if [ ! -z "${REMOTE}" ] ; then
+		ssh ${SERVER_USER}@${SERVER} \
+			"mv ${ARCHIVE_DIR}/incomplete-${DATE} ${ARCHIVE_DIR}/${DATE} \
+        		&& rm -f ${ARCHIVE_DIR}/current \
+        		&& ln -s ${DATE} ${ARCHIVE_DIR}/current"
+	else
+		mv ${ARCHIVE_DIR}/incomplete-${DATE} ${ARCHIVE_DIR}/${DATE} \
+        	&& rm -f ${ARCHIVE_DIR}/current \
+        	&& ln -s ${DATE} ${ARCHIVE_DIR}/current
+	fi
+}
+
+# This routine escapes shell variables by inserting a \ before
+# each special character.
+
+escape() {
+	echo $1 | sed -e 's/\\/\\\\/g'	\
+				  -e 's/(/\\(/g'	\
+				  -e 's/)/\\)/g'	\
+				  -e 's/&/\\&/g'	\
+				  -e "s/'/\\'/g"	\
+				  -e 's/"/\\"/g'	\
+				  -e 's/'/\\`/g'	\
+				  -e 's/\*/\\*/g'	\
+				  -e 's/\$/\\$/g'	\
+				  -e 's/!/\\!/g'	\
+				  -e 's/ /\\ /g'
+}
+
+# Set the PATH.  This has to be done if the program is called
+# by crond under Cygwin.
+
+export PATH=/usr/local/bin:/usr/bin:/bin:$PATH
+
+# See if we're already running.
+
+CONF=$(escape "$HOME"/.backup)
+if [ -e ${CONF}/.lock ] ; then
+	echo "Lock file already exists: ${CONF}/.lock"
+	exit
+fi
+touch ${CONF}/.lock
+
+# Are we running under Cygwin?  We'll have to back things up differently
+# if we are.
+
+if [ "${OS}" = "Windows_NT" ] ; then
+	WHOME=/cygdrive/$(echo $USERPROFILE \
+		| sed -r -e 's+^[A-Z]:+\L&+' \
+				 -e 's+^([a-z]):(.*)+\1\2+' \
+				 -e 's+\\+/+g')
+	RSYNC_OPTS="--chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -rltgoDEzP"
+else
+	WHOME=$HOME
+	RSYNC_OPTS="-azP"
+fi
+WHOME=$(escape "$WHOME")
+
+# Loop through each configuration file in the configuration directory.
+
+for CONFFILE in ${CONF}/*.conf ; do
+
+# Read the configuration variables, and set up the defaults if they're
+# empty.
+
+	CONFFILE=$(escape "$CONFFILE")
+	unset BACKUP_PATH BACKUP_ID FILES_FROM EXCLUDE_FROM
+	unset ARCHIVE_DIR SERVER SERVER_USER REMOTE
+	DATE=$(date "+%Y-%m-%d_%H-%M-%S")
+	. ${CONFFILE}
+	if [ -z "$BACKUP_PATH" ] ; then
+		BACKUP_PATH="$WHOME"
+	fi
+	BACKUP_PATH=$(escape "$BACKUP_PATH")/
+	if [ -z "$ARCHIVE_DIR" ] ; then
+		ARCHIVE_DIR=Backups
+	fi
+	ARCHIVE_DIR=$(escape "$ARCHIVE_DIR")
+	if [ ! -z "$SERVER" ] ; then
+		if [ -z "$SERVER_USER" ] ; then
+			SERVER_USER=$(id -un)
+		fi
+		REMOTE="${SERVER_USER}@${SERVER}:"
+		ARCHIVE_DIR=${ARCHIVE_DIR}/$(hostname | cut -d. -f1)
+	fi
+	if [ -z "$BACKUP_ID" ] ; then
+		BACKUP_ID=$(basename "$BACKUP_PATH")
+	fi
+	BACKUP_ID=$(escape "$BACKUP_ID")
+	ARCHIVE_DIR=${ARCHIVE_DIR}/${BACKUP_ID}
+	if [ ! -z "$FILES_FROM" ] ; then
+		FILES_FROM=$(escape "$FILES_FROM")
+		FILES_FROM="--files-from=${CONF}/${FILES_FROM}"
+	fi
+	if [ ! =z "$EXCLUDE_FROM" ] ; then
+		EXCLUDE_FROM=$(escape "$EXCLUDE_FROM"
+		EXCLUDE_FROM="--exclude-from=${CONF}/${EXCLUDE_FROM}"
+	fi
+
+# Create the back up path if it doesn't already exist.
+
+	if [ ! -z "${REMOTE}" ] ; then
+		ssh ${SERVER_USER}@${SERVER} \
+			"if [ ! -d ${ARCHIVE_DIR} ] ; then mkdir -p ${ARCHIVE_DIR} ; fi"
+	else
+		if [ ! -d ${ARCHIVE_DIR} ] ; then
+			mkdir -p ${ARCHIVE_DIR}
+		fi
+	fi
+
+# Do the back up, then remove the lock file.
+
+	rsync ${RSYNC_OPTS} \
+		--delete \
+		--delete-excluded \
+		${FILES_FROM} \
+		${EXCLUDE_FROM} \
+		--link-dest=../current \
+		${BACKUP_PATH} ${REMOTE}${ARCHIVE_DIR}/incomplete-${DATE} \
+		&& set_current
+done
+rm "${CONF}"/.lock

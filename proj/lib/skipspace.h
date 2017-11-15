@@ -1,0 +1,1 @@
+char *skipspace(char *, char *);

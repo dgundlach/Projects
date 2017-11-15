@@ -1,0 +1,110 @@
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+#include "xalloc.h"
+
+//
+//  Dereference a symbolic link.  If the path is not a symbolic link,
+//  return a copy of the path.  Keep defererencing until we find
+//  something that's not a symbolic link.
+//
+//  Subsequent calls will clobber the value returned, so make a copy of
+//  the dereferenced path if it's needed after them.
+//
+
+char *dereference(const char *path) {
+
+	static int alloc = 0;
+	static char *wp = NULL;
+	struct stat st;
+	int len;
+
+//
+//  Allocate the initial buffer or reallocate it if the size is too small.
+//
+
+	len = strlen(path) + 1;
+	if (!wp || (alloc < len)) {
+		alloc = 256 * ((len + 512) / 256);
+		wp = xrealloc(wp, alloc);
+	}
+	strcpy(wp, path);
+	if (lstat(wp, &st)) {
+		return NULL;
+	}
+	len = st.st_size + 1;
+
+//
+//  If the entry is a link, dereference it, and keep dereferencing while
+//  the entries are links.
+//
+
+	while (S_ISLNK(st.st_mode)) {
+		if (alloc < len) {
+			alloc = 256 * ((len + 512) / 256);
+			wp = xrealloc(wp, alloc);
+		}
+
+//
+//  If we can't read the link, return NULL.  Calling readlink with the
+//  buffer and path sharing the same address probably isn't portable,
+//  but it works under Linux and CygWin.
+//
+
+		if ((len = readlink(wp, wp, alloc)) == -1) {
+			return NULL;
+		}
+		wp[len] = '\0';
+
+//
+//  If the link is broken, return NULL.
+//
+
+		if (lstat(wp, &st)) {
+			return NULL;
+		}
+		len = st.st_size + 1;
+	}
+	return wp;
+}
+
+int deref_and_prune(const char *path) {
+
+	struct stat st;
+	int rv;
+
+	if (lstat(path, &st)) {
+		return -1;
+	}
+	if (S_ISLNK(st.st_mode)) {
+		char wp[st.st_size + 1];
+		if (readlink(path, wp, st.st_size) == -1) {
+			return -1;
+		}
+		wp[st.st_size] = '\0';
+		if (!(rv = deref_and_prune(wp))) {
+			return unlink(path);
+		}
+		return rv;
+	}
+	return pruneduplicates(path, 0);
+}
+
+char *deref(const char *path) {
+
+	struct stat st;
+	
+	if (lstat(path, &st)) {
+		return NULL;
+	}
+	if (S_ISLNK(st.st_mode)) {
+		char wp[st.st_size + 1];
+		if (readlink(path, wp, st.st_size) == -1) {
+			return NULL;
+		}
+		wp[st.st_size] = '\0';
+		return deref(wp);
+	}
+	return xstrdup((char *)path);
+}

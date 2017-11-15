@@ -1,0 +1,16 @@
+F BASENAME.C;1                          	basename.c
+F BASENAME.O;1                          	basename.o
+F GETDATE.H;1                           	getdate.h
+F RADACCT.H;1                           	radacct.h
+F SCHEMA.USE;1                          	schema.users
+F STRTODAY.C;1                          	strtoday.c
+F STRTODAY.O;1                          	strtoday.o
+F USERADD.C;1                           	useradd.c
+F USERS_SQ.C;1                          	users_sql.c
+F USERS_SQ.H;1                          	users_sql.h
+F USERS_SQ.O;1                          	users_sql.o
+F VPASSWD.C;1                           	vpasswd.c
+F VUSERADD.C;1                          	vuseradd.c
+F VUSERADD.O;1                          	vuseradd.o
+F VUSERDEL.C;1                          	vuserdel.c
+F VUSERMOD.C;1                          	vusermod.c

@@ -1,0 +1,11 @@
+#!/bin/sh
+ls /drv/1-5/Files/ | while read name ; do 
+	d=$(basename "$name" .iso)
+	fp="$d"/"$name"
+	if [ -f "$fp" ] ; then 
+		p=$(readlink "$fp" | cut -d/ -f1-3)
+		mv "$p"/NewMovies/"$name" "$p"/Done
+		rm "$fp"
+		ln -s /drv/1-5/Movies/"$name" "$fp"
+	fi
+done

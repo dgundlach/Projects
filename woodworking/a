@@ -1,0 +1,15 @@
+part opening
+double spacing
+int count
+
+height = opening.length - (spacing * (count - 1))
+calculate openings
+    if overlay > 0 and using matching reveal,
+        face rail width for added rails = frame rail width + overlay
+        if faces are to be butted
+            face stile width for added stiles = 2 * frame stile width
+        else
+            face stile width for added stiles = frame stile width + overlay
+calculate box heights
+calculate drawer panels
+

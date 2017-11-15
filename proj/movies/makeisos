@@ -1,0 +1,11 @@
+#!/bin/sh
+TARGET=1-4
+for name in * ; do
+   if [ -d "$name"/VIDEO_TS ] ; then
+      rm "$name"/VIDEO_TS/VIDEO_TS.nfo
+      rm "$name"/VIDEO_TS/VIDEO_TS.tbn
+      rm "$name"/VIDEO_TS/VIDEO_TS-fanart.jpg
+      rm "$name"/VIDEO_TS/.actors
+      mkisofs -v -udf -dvd-video -o /drv/"$TARGET"/Movies/"$name".iso "$name"
+   fi
+done

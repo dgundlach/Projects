@@ -1,0 +1,39 @@
+From cpdaniel_remove_this_and_nospam@mvps.org.nospam Fri Feb 04 11:57:50 2005
+From: "Carl Daniel [VC++ MVP]" <cpdaniel_remove_this_and_nospam@mvps.org.nospam>
+References: <jJcMd.7188$xR1.2439@bgtnsc04-news.ops.worldnet.att.net>
+Subject: Re: Looking for code that can parse C-language declarations to create special data files
+Date: Fri, 4 Feb 2005 09:57:50 -0800
+Lines: 21
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 6.00.2900.2180
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
+X-RFC2646: Format=Flowed; Original
+Message-ID: <O#cnNMuCFHA.2876@TK2MSFTNGP12.phx.gbl>
+Newsgroups: comp.unix.programmer,microsoft.public.vc.language
+NNTP-Posting-Host: adsl-216-102-107-166.dsl.scrm01.pacbell.net 216.102.107.166
+Path: newsfeed.slurp.net!newsfeed.hal-mli.net!feeder1.hal-mli.net!meganewsservers.com!feeder2.on.meganewsservers.com!newsfeed.telusplanet.net!newsfeed.telus.net!cyclone.bc.net!msrtrans!TK2MSFTNGP08.phx.gbl!TK2MSFTNGP12.phx.gbl
+Xref: newsfeed.slurp.net comp.unix.programmer:24454 microsoft.public.vc.language:39542
+
+Norm Dresner wrote:
+> SO ...  I need the source code for a program (or set of functions)
+> that can parse standard C-language declarations for various integer,
+> floating point, and character array data types and structures and
+> unions that contain these types of elements.  I'd hope to be able to
+> take the "output" of this program into a function I'd write which
+> would use the name, data type, etc, to construct the MDF entry for
+> each data element.
+
+If you're interested in an all-C++ solution, you might look into 
+Boost::Spirit (http://spirit.sf.net).  This is a parser-generator library 
+written in C++.  In the spirit repository 
+(http://spirit.sourceforge.net/repository/applications/show_contents.php) 
+there's a complete C-language grammar.  There's also the Wave preprocessor 
+library 
+(http://spirit.sourceforge.net/index.php?doc=docs/wave_v1_0/index.html) 
+which implements a complete C and C++ standards-compliant preprocessor.
+
+-cd
+
+
+

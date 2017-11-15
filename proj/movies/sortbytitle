@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp $1 $1.bak
+sed -e 's/^The \(.*\)/\1, The/' -e 's/^A \(.*\)/\1, A/' $1.bak | sort | sed -e 's/\(.*\), The$/The \1/' -e 's/\(.*\), A$/A \1/' > $1

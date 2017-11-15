@@ -1,0 +1,74 @@
+#!/bin/sh
+SAVEIFS=$IFS
+IFS=:
+LASTFILENAME=""
+FROMPATH=/drv/2-2/Photos/
+TOPATH=/drv/2-2/Photos2/
+LASTYEAR=0
+FILENUMBER=0
+LASTTARGETDIR=""
+SEQ=0
+LASTTOUCHDATE=""
+cat ~/photowork/photolist.sorted | while read FILENAME FILEPATH TOUCHDATE ; do
+#    FILENAME=`echo "$FILENAME" | tr A-Z a-z`
+    OFILENAME="$FILENAME"
+    YEAR=${TOUCHDATE:0:4}
+    TARGETDIR=${YEAR}/${YEAR}-${TOUCHDATE:4:2}-${TOUCHDATE:6:2}/
+    if [ "$YEAR" != "$LASTYEAR" ] ; then
+        LASTYEAR=$YEAR
+        FILENUMBER=0
+        SEQ=0
+    fi
+    if [ "$TARGETDIR" != "$LASTTARGETDIR" ] ; then
+        LASTTARGETDIR="$TARGETDIR"
+        SEQ=0
+    fi
+    ORIGSEQ=`echo $FILENAME | sed -r -e 's/^(.{4,5})([0-9]{4})(.*)/\2/'`
+    if [ "$ORIGSEQ" != "$FILENAME" ] ; then
+        if [ "$ORIGSEQ" != "$SEQ" ] ; then
+            let FILENUMBER=FILENUMBER+1
+            SEQ=$ORIGSEQ
+        fi
+        FILETYPE=`echo $FILENAME | sed -r -e 's/^(.{4,5})([0-9]{4})(.*)/\3/'`
+        FILENAME=`printf "%d_%06d%s" "$YEAR" "$FILENUMBER" "$FILETYPE"`
+        if [ -e "$NPATH""$FILENAME" ] ; then
+            if [ "$TOUCHDATE" != "$LASTTOUCHDATE" ] ; then
+                let FILENUMBER=FILENUMBER+1
+                FILENAME=`printf "%d_%06d%s" "$YEAR" "$FILENUMBER" "$FILETYPE"`
+            else
+                TNAME=$FILENAME
+                I=1
+                while [ -e "$NPATH""$TNAME" ] ; do
+                    TNAME=`printf "Dup%02d-%s" $I "$FILENAME"`
+                    echo 'Dup! - '"$TARGETDIR""$TNAME"" $FILEPATH"
+                    let I=I+1
+                    if [ $I -gt 99 ] ; then
+                        exit
+                    fi
+                done
+                FILENAME=$TNAME
+            fi
+        fi
+    else
+        TNAME=$FILENAME
+        I=1
+        while [ -e "$NPATH""$TNAME" ] ; do
+            TNAME=`printf "Dup%02d-%s" $I "$FILENAME"`
+            echo 'Dup! - '"$TARGETDIR""$TNAME"" $FILEPATH"
+            let I=I+1
+            if [ $I -gt 99 ] ; then
+                exit
+            fi
+        done
+        FILENAME=$TNAME
+    fi
+    OPATH="$FROMPATH""$FILEPATH"
+    NPATH="$TOPATH""$TARGETDIR"
+    if [ ! -d "$NPATH" ] ; then
+        mkdir -p "$NPATH"
+    fi
+    touch -t $TOUCHDATE "$OPATH"
+    cp -ps "$OPATH" "$NPATH""$FILENAME"
+    LASTTOUCHDATE=$TOUCHDATE
+done
+IFS=$SAVEIFS

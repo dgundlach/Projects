@@ -1,0 +1,1 @@
+char *cleanpath(char *);

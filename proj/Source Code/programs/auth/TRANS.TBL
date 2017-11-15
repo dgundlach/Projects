@@ -1,0 +1,15 @@
+L ADDVALIA.;1                           	addvalias	addvuser
+L ADDVMAIL.;1                           	addvmailuser	addvuser
+F ADDVUSER.;1                           	addvuser
+F ADDVUSER.C;1                          	addvuser.c
+D BACKUPS                               	backups
+F DBFIELDS.H;1                          	dbfields.h
+F FUNCS.H;1                             	funcs.h
+F ODBC.C;1                              	odbc.c
+F RADACCT.H;1                           	radacct.h
+F SETENVST.C;1                          	SetEnvStrings.c
+F SQL.C;1                               	sql.c
+F SQL.H;1                               	sql.h
+F STRINGIF.C;1                          	Stringify.c
+F STRTODAY.C;1                          	StrToDay.c
+F VUSERADD.C;1                          	vuseradd.c

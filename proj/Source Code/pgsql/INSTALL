@@ -1,0 +1,46 @@
+
+
+ 1) Edit the files setup.h as your postgres database requires.
+
+ 2) Edit the files nss-pgsql.conf and nss-pgsql-root.conf to define your
+    database server(s).  By default, you can have up to 10 of them 
+    defined.  If you need more, you'll have to change MAXSERVERS in 
+    setup.h.  These will be copied to /etc.  nss-pgsql-root.conf should 
+    only be readable by root.
+
+    nss-pgsql.conf:
+
+    host=localhost port=5432 dbname=userdb user=lookup password=asdfghjk
+    host=some.other.host port=5432 dbname=userdb user=lookup password=asdfghjk
+
+    nss-pgsql-root.conf:
+
+    host=localhost port=5432 dbname=userdb user=rewtlookup password=lkjhgfds
+    host=some.other.host port=5432 dbname=userdb user=rewtlookup password=lkjhgfds
+
+ 3) make all 
+
+ 4) make install
+
+ 5) Modify /etc/nsswitch.conf
+
+    Add in one or more lines:
+
+    passwd:		files pgsql
+    shadow:		files pgsql
+    group:		files pgsql
+
+ 6) Create the lookup users (one for regular files and one for root-only 
+    files).
+
+    createuser -D -A -P lookup
+    createuser -D -A -P rewtlookup
+
+ 7) Edit the file sampleschema to make sure it's what you want.  Be sure
+    to pay attention to the lines granting select to the databases and
+    set them to the users you've created.
+
+ 8) Create the database.
+
+    createdb userdb
+    psql -e userdb < sampleschema

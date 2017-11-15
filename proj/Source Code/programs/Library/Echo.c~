@@ -1,0 +1,22 @@
+#include <termios.h>
+#include <unistd.h>
+
+void echo_off(void) {
+
+    struct termios settings;
+    
+    tcgetattr(0,&settings);
+    settings.c_lflag &= (~ECHO);
+    tcsetattr(0,TCSANOW,&settings);
+    return;
+}
+                        
+void echo_on(void) {
+                            
+    struct termios settings;
+    
+    tcgetattr(0,&settings);
+    settings.c_lflag &= (ECHO);
+    tcsetattr(0,TCSANOW,&settings);
+    return;
+}

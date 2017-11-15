@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z "$1" ] ; then
+    echo "Usage $0 <file>"
+    exit;
+fi
+fname=`basename "$1" .cpp`.sql
+cpp -P "$1" | sed -e "s/SQUOTE/'/g" > $fname;
+psql billing < $fname
